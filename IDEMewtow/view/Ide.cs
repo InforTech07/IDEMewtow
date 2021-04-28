@@ -126,8 +126,7 @@ namespace IDEMewtow
 
         private void BtnLexico_Click(object sender, EventArgs e)
         {
-            lista.Clear();
-            dataGridView1.Rows.Clear();
+            dataGridView1.DataSource = null;
             var tab = tabprimary.SelectedTab;
             var contenido=string.Empty;
 
@@ -136,14 +135,9 @@ namespace IDEMewtow
             string pathfile = Path.Combine(Environment.rootDir, proy, namefile);
 
             contenido = Helpers.ReadFile(pathfile);
+            var data = TokenGenerator.CreateTokens(contenido);
+            dataGridView1.DataSource = data;
 
-            string[] tokens = TokenGenerator.CreateTokens(contenido);
-
-            foreach (var pword in tokens)
-            {
-                string ty=expregular(pword);
-                evaluar(pword,ty);
-            }
         }
 
         public string expregular(string vword)
@@ -168,17 +162,6 @@ namespace IDEMewtow
             return typestring;
 
         }
-
-
-        List<Mytoken> lista = new List<Mytoken>();
-        public void evaluar(string w, string t)
-        {
-            Mytoken tok = new Mytoken(w,t);
-            lista.Add(tok);
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = lista;
-        }
-
         
 
     }
