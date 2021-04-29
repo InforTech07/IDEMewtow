@@ -1,3 +1,0 @@
-function mvoid crear () {
-mConsole.Writeline ( "hola mundo" )
-}

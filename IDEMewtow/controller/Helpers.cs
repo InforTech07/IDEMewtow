@@ -151,14 +151,12 @@ namespace IDEMewtow
 
         }
 
-        private void MessageSuccess()
+        public static  void MewtowMessage(string mess,string caption)
         {
-            const string message = "😄 Ya.. creaste la Base de Datos.!";
-            const string caption = "Ok!";
             MessageBoxButtons btnSuccess = MessageBoxButtons.YesNo;
             DialogResult result;
 
-            result = MessageBox.Show(message, caption, btnSuccess);
+            result = MessageBox.Show(mess, caption, btnSuccess);
             // If the no button was pressed ...
             if (result == System.Windows.Forms.DialogResult.Yes)
             {

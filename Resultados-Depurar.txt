@@ -1,0 +1,32 @@
+﻿'IDEMewtow.exe' (CLR v4.0.30319: DefaultDomain): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: DefaultDomain): 'C:\Users\Techp\source\repos\IDEMewtow\IDEMewtow\bin\Debug\IDEMewtow.exe' cargado. Símbolos cargados.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms.resources\v4.0_4.0.0.0_es_b77a5c561934e089\System.Windows.Forms.resources.dll' cargado. El módulo se compiló sin símbolos.
+False
+No existe la base datos..!
+listo...!
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\Users\Techp\source\repos\IDEMewtow\IDEMewtow\bin\Debug\System.Data.SQLite.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\System.Transactions\v4.0_4.0.0.0__b77a5c561934e089\System.Transactions.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+Native library pre-loader is trying to load native SQLite library "C:\Users\Techp\source\repos\IDEMewtow\IDEMewtow\bin\Debug\x86\SQLite.Interop.dll"...
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.Wrapper.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Data.resources\v4.0_4.0.0.0_es_b77a5c561934e089\System.Data.resources.dll' cargado. El módulo se compiló sin símbolos.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Numerics\v4.0_4.0.0.0__b77a5c561934e089\System.Numerics.dll' cargado. Se omitió la carga de símbolos. El módulo está optimizado y la opción del depurador 'Sólo mi código' está habilitada.
+Executing finally block.
+Executing finally block.
+mvar num1
+mvar num2
+mfunction mmain ( )
+{
+ mvar result := num1 + num2
+}
+
+Executing finally block.
+'IDEMewtow.exe' (CLR v4.0.30319: IDEMewtow.exe): 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\mscorlib.resources\v4.0_4.0.0.0_es_b77a5c561934e089\mscorlib.resources.dll' cargado. El módulo se compiló sin símbolos.
+El programa '[12852] IDEMewtow.exe' terminó con código 0 (0x0).

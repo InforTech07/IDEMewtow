@@ -35,6 +35,12 @@ namespace IDEMewtow
             return tb;
         }
 
+        public DataGridView CreateDataGridView()
+        {
+            DataGridView dgv = new DataGridView();
+            dgv.Dock = DockStyle.Fill;
+            return dgv;
+        }
 
     }
 }

@@ -47,11 +47,13 @@ namespace IDEMewtow
             this.BtnCreateProyect = new System.Windows.Forms.Button();
             this.TxtBSolution = new System.Windows.Forms.TextBox();
             this.TxbNameProyect = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LbNew = new System.Windows.Forms.Label();
+            this.Lbproyects = new System.Windows.Forms.Label();
             this.BtnSettings = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnExit = new System.Windows.Forms.Button();
+            this.BtnDeleteKeyWord = new System.Windows.Forms.Button();
+            this.BtnDeleteGrammar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.Psettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -67,8 +69,8 @@ namespace IDEMewtow
             this.panel1.Controls.Add(this.BtnCreateProyect);
             this.panel1.Controls.Add(this.TxtBSolution);
             this.panel1.Controls.Add(this.TxbNameProyect);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.LbNew);
+            this.panel1.Controls.Add(this.Lbproyects);
             this.panel1.Location = new System.Drawing.Point(376, 31);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(781, 691);
@@ -77,6 +79,8 @@ namespace IDEMewtow
             // Psettings
             // 
             this.Psettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.Psettings.Controls.Add(this.BtnDeleteGrammar);
+            this.Psettings.Controls.Add(this.BtnDeleteKeyWord);
             this.Psettings.Controls.Add(this.BtnSettingClose);
             this.Psettings.Controls.Add(this.BtnGramatica);
             this.Psettings.Controls.Add(this.BtnDataBase);
@@ -84,9 +88,9 @@ namespace IDEMewtow
             this.Psettings.Controls.Add(this.LGramatica);
             this.Psettings.Controls.Add(this.LKeyWords);
             this.Psettings.Controls.Add(this.LDataBase);
-            this.Psettings.Location = new System.Drawing.Point(19, 19);
+            this.Psettings.Location = new System.Drawing.Point(3, 30);
             this.Psettings.Name = "Psettings";
-            this.Psettings.Size = new System.Drawing.Size(711, 571);
+            this.Psettings.Size = new System.Drawing.Size(760, 564);
             this.Psettings.TabIndex = 14;
             // 
             // BtnSettingClose
@@ -98,7 +102,7 @@ namespace IDEMewtow
             this.BtnSettingClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSettingClose.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSettingClose.ForeColor = System.Drawing.Color.LimeGreen;
-            this.BtnSettingClose.Location = new System.Drawing.Point(507, 500);
+            this.BtnSettingClose.Location = new System.Drawing.Point(44, 494);
             this.BtnSettingClose.Name = "BtnSettingClose";
             this.BtnSettingClose.Size = new System.Drawing.Size(102, 49);
             this.BtnSettingClose.TabIndex = 14;
@@ -115,11 +119,11 @@ namespace IDEMewtow
             this.BtnGramatica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGramatica.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGramatica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(151)))), ((int)(((byte)(221)))));
-            this.BtnGramatica.Location = new System.Drawing.Point(475, 332);
+            this.BtnGramatica.Location = new System.Drawing.Point(358, 325);
             this.BtnGramatica.Name = "BtnGramatica";
-            this.BtnGramatica.Size = new System.Drawing.Size(168, 49);
+            this.BtnGramatica.Size = new System.Drawing.Size(289, 49);
             this.BtnGramatica.TabIndex = 19;
-            this.BtnGramatica.Text = "📑";
+            this.BtnGramatica.Text = "📑Gramatica";
             this.BtnGramatica.UseVisualStyleBackColor = false;
             this.BtnGramatica.Click += new System.EventHandler(this.BtnGramatica_Click);
             // 
@@ -132,11 +136,11 @@ namespace IDEMewtow
             this.BtnDataBase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDataBase.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDataBase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(151)))), ((int)(((byte)(221)))));
-            this.BtnDataBase.Location = new System.Drawing.Point(475, 79);
+            this.BtnDataBase.Location = new System.Drawing.Point(358, 21);
             this.BtnDataBase.Name = "BtnDataBase";
-            this.BtnDataBase.Size = new System.Drawing.Size(168, 49);
+            this.BtnDataBase.Size = new System.Drawing.Size(289, 49);
             this.BtnDataBase.TabIndex = 18;
-            this.BtnDataBase.Text = "🗄️";
+            this.BtnDataBase.Text = "🗄️ Base Datos";
             this.BtnDataBase.UseVisualStyleBackColor = false;
             this.BtnDataBase.Click += new System.EventHandler(this.BtnDataBase_Click);
             // 
@@ -149,11 +153,11 @@ namespace IDEMewtow
             this.BtnKeyWords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnKeyWords.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnKeyWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(151)))), ((int)(((byte)(221)))));
-            this.BtnKeyWords.Location = new System.Drawing.Point(475, 208);
+            this.BtnKeyWords.Location = new System.Drawing.Point(358, 165);
             this.BtnKeyWords.Name = "BtnKeyWords";
-            this.BtnKeyWords.Size = new System.Drawing.Size(168, 49);
+            this.BtnKeyWords.Size = new System.Drawing.Size(289, 49);
             this.BtnKeyWords.TabIndex = 14;
-            this.BtnKeyWords.Text = "📝";
+            this.BtnKeyWords.Text = "📝 Palabras ";
             this.BtnKeyWords.UseVisualStyleBackColor = false;
             this.BtnKeyWords.Click += new System.EventHandler(this.BtnKeyWords_Click);
             // 
@@ -162,33 +166,33 @@ namespace IDEMewtow
             this.LGramatica.AutoSize = true;
             this.LGramatica.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LGramatica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(83)))), ((int)(((byte)(120)))));
-            this.LGramatica.Location = new System.Drawing.Point(21, 338);
+            this.LGramatica.Location = new System.Drawing.Point(24, 337);
             this.LGramatica.Name = "LGramatica";
-            this.LGramatica.Size = new System.Drawing.Size(217, 37);
+            this.LGramatica.Size = new System.Drawing.Size(159, 37);
             this.LGramatica.TabIndex = 17;
-            this.LGramatica.Text = "😥 Gramatica..!!";
+            this.LGramatica.Text = "😥 Falta...!!";
             // 
             // LKeyWords
             // 
             this.LKeyWords.AutoSize = true;
             this.LKeyWords.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LKeyWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(83)))), ((int)(((byte)(120)))));
-            this.LKeyWords.Location = new System.Drawing.Point(21, 208);
+            this.LKeyWords.Location = new System.Drawing.Point(24, 165);
             this.LKeyWords.Name = "LKeyWords";
-            this.LKeyWords.Size = new System.Drawing.Size(322, 37);
+            this.LKeyWords.Size = new System.Drawing.Size(152, 37);
             this.LKeyWords.TabIndex = 16;
-            this.LKeyWords.Text = "😥 Palabras resevadas..!!";
+            this.LKeyWords.Text = "😥 Falta..!!";
             // 
             // LDataBase
             // 
             this.LDataBase.AutoSize = true;
             this.LDataBase.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LDataBase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(83)))), ((int)(((byte)(120)))));
-            this.LDataBase.Location = new System.Drawing.Point(21, 79);
+            this.LDataBase.Location = new System.Drawing.Point(21, 27);
             this.LDataBase.Name = "LDataBase";
-            this.LDataBase.Size = new System.Drawing.Size(264, 37);
+            this.LDataBase.Size = new System.Drawing.Size(152, 37);
             this.LDataBase.TabIndex = 15;
-            this.LDataBase.Text = "😥 Base de datos..!!";
+            this.LDataBase.Text = "😥 Falta..!!";
             this.LDataBase.Click += new System.EventHandler(this.label3_Click);
             // 
             // LStatus
@@ -291,27 +295,27 @@ namespace IDEMewtow
             this.TxbNameProyect.Enter += new System.EventHandler(this.TxbNameProyect_Enter);
             this.TxbNameProyect.Leave += new System.EventHandler(this.TxbNameProyect_Leave);
             // 
-            // label2
+            // LbNew
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(491, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 37);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Nuevo";
+            this.LbNew.AutoSize = true;
+            this.LbNew.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbNew.ForeColor = System.Drawing.Color.White;
+            this.LbNew.Location = new System.Drawing.Point(491, 30);
+            this.LbNew.Name = "LbNew";
+            this.LbNew.Size = new System.Drawing.Size(96, 37);
+            this.LbNew.TabIndex = 3;
+            this.LbNew.Text = "Nuevo";
             // 
-            // label1
+            // Lbproyects
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(144, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 37);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Proyectos";
+            this.Lbproyects.AutoSize = true;
+            this.Lbproyects.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbproyects.ForeColor = System.Drawing.Color.White;
+            this.Lbproyects.Location = new System.Drawing.Point(144, 30);
+            this.Lbproyects.Name = "Lbproyects";
+            this.Lbproyects.Size = new System.Drawing.Size(136, 37);
+            this.Lbproyects.TabIndex = 1;
+            this.Lbproyects.Text = "Proyectos";
             // 
             // BtnSettings
             // 
@@ -358,6 +362,40 @@ namespace IDEMewtow
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
+            // BtnDeleteKeyWord
+            // 
+            this.BtnDeleteKeyWord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.BtnDeleteKeyWord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(177)))), ((int)(((byte)(113)))));
+            this.BtnDeleteKeyWord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BtnDeleteKeyWord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BtnDeleteKeyWord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDeleteKeyWord.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteKeyWord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(177)))), ((int)(((byte)(113)))));
+            this.BtnDeleteKeyWord.Location = new System.Drawing.Point(358, 233);
+            this.BtnDeleteKeyWord.Name = "BtnDeleteKeyWord";
+            this.BtnDeleteKeyWord.Size = new System.Drawing.Size(289, 49);
+            this.BtnDeleteKeyWord.TabIndex = 20;
+            this.BtnDeleteKeyWord.Text = "🗑️ Vaciar ";
+            this.BtnDeleteKeyWord.UseVisualStyleBackColor = false;
+            this.BtnDeleteKeyWord.Click += new System.EventHandler(this.BtnDeleteKeyWord_Click);
+            // 
+            // BtnDeleteGrammar
+            // 
+            this.BtnDeleteGrammar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.BtnDeleteGrammar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(177)))), ((int)(((byte)(113)))));
+            this.BtnDeleteGrammar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BtnDeleteGrammar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BtnDeleteGrammar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDeleteGrammar.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteGrammar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(177)))), ((int)(((byte)(113)))));
+            this.BtnDeleteGrammar.Location = new System.Drawing.Point(358, 394);
+            this.BtnDeleteGrammar.Name = "BtnDeleteGrammar";
+            this.BtnDeleteGrammar.Size = new System.Drawing.Size(289, 49);
+            this.BtnDeleteGrammar.TabIndex = 21;
+            this.BtnDeleteGrammar.Text = "🗑️ Vaciar ";
+            this.BtnDeleteGrammar.UseVisualStyleBackColor = false;
+            this.BtnDeleteGrammar.Click += new System.EventHandler(this.BtnDeleteGrammar_Click);
+            // 
             // ProyectManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -390,8 +428,8 @@ namespace IDEMewtow
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox TxtBSolution;
         private System.Windows.Forms.TextBox TxbNameProyect;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LbNew;
+        private System.Windows.Forms.Label Lbproyects;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnCreateProyect;
@@ -406,6 +444,8 @@ namespace IDEMewtow
         private System.Windows.Forms.Button BtnGramatica;
         private System.Windows.Forms.Button BtnDataBase;
         private System.Windows.Forms.Button BtnKeyWords;
+        private System.Windows.Forms.Button BtnDeleteGrammar;
+        private System.Windows.Forms.Button BtnDeleteKeyWord;
     }
 }
 

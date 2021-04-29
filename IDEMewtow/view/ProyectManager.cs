@@ -30,9 +30,6 @@ namespace IDEMewtow
 
         }
 
-       
-
-
         private void SplashScreenShow()
         {
             Application.Run(new SplashScreen());      
@@ -46,30 +43,97 @@ namespace IDEMewtow
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             Psettings.Visible = false;
             bool sta = StatusComponents();
-
             if (sta==true)
             {
                 Console.WriteLine("Listo..");
-               // BtnCreateDB.Visible = false;
+                TxbNameProyect.Visible = true;
+                TxtBSolution.Visible = true;
                 BtnCreateProyect.Visible = true;
+                LbNew.Visible = true;
+                Lbproyects.Visible = true;
                 LoadProyects();
-
-
             } 
             else
             {
                 Console.WriteLine(sta);
-                Console.WriteLine("No existe la base datos..!");
+                Console.WriteLine("Faltan componentes...!!!");
                 LStatus.Visible = true;
                 LStatus.ForeColor = Color.FromArgb(245, 83, 133);
-                LStatus.Text = "😪 Falta componenetes...!!";
-                BtnCreateProyect.Visible = false; 
+                LStatus.Text = "😪 Faltan componenetes...!!";
+                BtnCreateProyect.Visible = false;
+                TxbNameProyect.Visible = false;
+                TxtBSolution.Visible = false;
+                LbNew.Visible = false;
+                Lbproyects.Visible = false;
             }
 
         }
 
+        private void StatusMewtowDB()
+        {
+            StatusDB = File.Exists(DirDb);
+            if (StatusDB)
+            {
+                BtnDataBase.ForeColor = Color.FromArgb(0, 122, 204);
+                LDataBase.Text = "😄 Habilitado..!!";
+                LDataBase.ForeColor = Color.FromArgb(0, 122, 204);
+            }
+            else
+            {
+                BtnDataBase.ForeColor = Color.FromArgb(245, 83, 133);
+                LDataBase.ForeColor = Color.FromArgb(245, 83, 133);
+                LDataBase.Text = "😪 Faltan componenetes...!!";
+            }
+        }
+
+        private void StatusKeyWord()
+        {
+            int Result = RequestDB.GetCountKeyWord();
+            
+            if (Result > 0)
+            {
+
+                LKeyWords.Text = "😄 Listo..!!";
+                LKeyWords.ForeColor = Color.FromArgb(0, 122, 204);
+                BtnKeyWords.ForeColor = Color.FromArgb(0, 122, 204);
+                BtnKeyWords.FlatAppearance.BorderColor = Color.FromArgb(0, 122, 204);
+                StatusKeyWords = true;
+            }
+            else
+            {
+                LKeyWords.Text = "😪 Falta ...!!";
+                LKeyWords.ForeColor = Color.FromArgb(245, 83, 133);
+                BtnKeyWords.ForeColor = Color.FromArgb(245, 83, 133);
+                BtnKeyWords.FlatAppearance.BorderColor = Color.FromArgb(245, 83, 133);
+            }
+
+        }
+
+        private void StatusGrammar()
+        {
+            int Result = RequestDB.GetCountGrammar();
+
+            if (Result > 0)
+            {
+                
+                LGramatica.Text = "😄 Listo..!!";
+                LGramatica.ForeColor = Color.FromArgb(0, 122, 204);
+                BtnGramatica.ForeColor = Color.FromArgb(0, 122, 204);
+                BtnGramatica.FlatAppearance.BorderColor = Color.FromArgb(0, 122, 204);
+                StatusGramatica = true;
+            }
+            else
+            {
+                LGramatica.Text = "😪 Falta ...!!";
+                LGramatica.ForeColor = Color.FromArgb(245, 83, 133);
+                BtnGramatica.ForeColor = Color.FromArgb(245, 83, 133);
+                BtnGramatica.FlatAppearance.BorderColor = Color.FromArgb(245, 83, 133);
+            }
+
+        }
         private void LoadProyects()
         {
             
@@ -77,15 +141,34 @@ namespace IDEMewtow
 
         }
 
+        
+        
+        
+        
         private bool StatusComponents()
         {
+            StatusMewtowDB();
+            StatusKeyWord();
+            StatusGrammar();
             bool Status = false;
             if(StatusDB && StatusKeyWords && StatusGramatica)
             {
                 Status = true;
+              //  Console.WriteLine("Listo..");
+              //  TxbNameProyect.Visible = true;
+              //  TxtBSolution.Visible = true;
+              //  BtnCreateProyect.Visible = true;
+              //  LbNew.Visible = true;
+              //  Lbproyects.Visible = true;
+              //  Psettings.Visible = false;
+              //  LStatus.Visible = true;
+              //  LStatus.ForeColor = Color.FromArgb(0, 122, 204);
+              //  LStatus.Text = "😄 Empecemos..!!";
             }
-      
 
+            Console.WriteLine(StatusDB);
+            Console.WriteLine(StatusKeyWords);
+            Console.WriteLine(StatusGramatica);
             return Status;
         }
         
@@ -142,7 +225,7 @@ namespace IDEMewtow
         {
              string ProyectName = TxbNameProyect.Text;
              string SolutionName = TxtBSolution.Text;
-             RequestDB.CreateNewProyect(ProyectName);
+             RequestDB.CreateNewProyect(ProyectName,SolutionName);
              CreateFile.NewFolder(ProyectName);
              CreateFile.NewFile(ProyectName,SolutionName);
              int lastId = RequestDB.GetLastId();
@@ -176,73 +259,91 @@ namespace IDEMewtow
 
         private void BtnDataBase_Click(object sender, EventArgs e)
         {
-            bool ResultStatusDB = File.Exists(DirDb);
-            if (ResultStatusDB==true)
+            
+            if (StatusDB)
             {
-                LDataBase.Text = "😄 Listo..!!";
-                LDataBase.ForeColor = Color.FromArgb(0, 122, 204);
-                StatusDB = true;
+                Helpers.MewtowMessage("😄 BD Habilitado!","OK");  
             }
             else
             {
                 DBMewtow.CreateDataBase();
-                LDataBase.Text = "😄 Listo..!!";
-                LDataBase.ForeColor = Color.FromArgb(0, 122, 204);
+                StatusMewtowDB();
                 StatusDB = true;
             }
         }
 
         private void BtnKeyWords_Click(object sender, EventArgs e)
         {
-            bool ResultStatusKeyWords = true;
-            if (ResultStatusKeyWords == true)
+            if (StatusKeyWords)
             {
-                LKeyWords.Text = "😄 Listo..!!";
-                LKeyWords.ForeColor = Color.FromArgb(0, 122, 204);
-                StatusKeyWords = true;
+                Helpers.MewtowMessage("😄 Ya hay palabras reservadas..!", "OK");
             }
             else
             {
-               // DBMewtow.CreateDataBase();
-                LKeyWords.Text = "😄 Listo..!!";
-                LKeyWords.ForeColor = Color.FromArgb(0, 122, 204);
-                StatusKeyWords = true;
+                Console.WriteLine("presionado para crear keywords");
+                bool result = KeyWord.LoadKeyword();
+                StatusKeyWords = result;
+                StatusKeyWord();
             }
-
+            
         }
 
         private void BtnGramatica_Click(object sender, EventArgs e)
         {
-            bool ResultStatusGramatica = true;
-            if (ResultStatusGramatica == true)
+            if (StatusGramatica)
             {
-                LGramatica.Text = "😄 Listo..!!";
-                LGramatica.ForeColor = Color.FromArgb(0, 122, 204);
-                StatusGramatica = true;
+                Helpers.MewtowMessage("😄 Ya hay una gramatica..!!", "OK");
             }
             else
             {
-                // DBMewtow.CreateDataBase();
-                LGramatica.Text = "😄 Listo..!!";
-                LGramatica.ForeColor = Color.FromArgb(0, 122, 204);
-                StatusGramatica = true;
+                Grammar g = new Grammar();
+                bool result = g.LoadGrammar();
+                 StatusGramatica = result;
+                 StatusGrammar();
             }
+
         }
 
         private void BtnSettingClose_Click_1(object sender, EventArgs e)
         {
-            Psettings.Visible = false;
-            Console.WriteLine("listo...!");
-            LStatus.Visible = true;
-            LStatus.ForeColor = Color.FromArgb(0, 122, 204);
-            LStatus.Text = "😄 Empecemos..!!";
-            BtnCreateProyect.Visible = true;
-            LoadProyects();
+            if (StatusDB && StatusKeyWords && StatusGramatica)
+            {
+                StatusComponents();
+                Console.WriteLine("Listo..");
+                TxbNameProyect.Visible = true;
+                TxtBSolution.Visible = true;
+                BtnCreateProyect.Visible = true;
+                LbNew.Visible = true;
+                Lbproyects.Visible = true;
+                Psettings.Visible = false;
+                LStatus.Visible = true;
+                LStatus.ForeColor = Color.FromArgb(0, 122, 204);
+                LStatus.Text = "😄 Empecemos..!!";
+                LoadProyects();
+            }
+            else
+            {
+                Helpers.MewtowMessage("😪 Falta componenetes...!!", "Error");
+            }
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
             Psettings.Visible = true;
+        }
+
+        private void BtnDeleteKeyWord_Click(object sender, EventArgs e)
+        {
+            RequestDB.DeleteKeyWord();
+            StatusKeyWords = false;
+            StatusKeyWord();
+        }
+
+        private void BtnDeleteGrammar_Click(object sender, EventArgs e)
+        {
+            RequestDB.DeleteGrammar();
+            StatusGramatica = false;
+            StatusGrammar();
         }
     }
 }

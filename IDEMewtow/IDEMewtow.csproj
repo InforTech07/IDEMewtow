@@ -83,9 +83,13 @@
     <Compile Include="controller\Components.cs" />
     <Compile Include="controller\CreateFile.cs" />
     <Compile Include="controller\Environment.cs" />
+    <Compile Include="controller\KeyWord.cs" />
+    <Compile Include="controller\Grammar.cs" />
+    <Compile Include="controller\LogProcess.cs" />
     <Compile Include="module\DBMewtow.cs" />
     <Compile Include="controller\Helpers.cs" />
     <Compile Include="module\RequestDB.cs" />
+    <Compile Include="module\ScriptSQLdb.cs" />
     <Compile Include="TabControlEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -93,6 +97,7 @@
       <DependentUpon>TabControlEx.cs</DependentUpon>
     </Compile>
     <Compile Include="controller\Token.cs" />
+    <Compile Include="controller\TokenMewtow.cs" />
     <Compile Include="view\Ide.cs">
       <SubType>Form</SubType>
     </Compile>
