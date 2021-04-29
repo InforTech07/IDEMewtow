@@ -58,7 +58,7 @@ namespace IDEMewtow
         public static List<Token> CreateTokens(string content)
         {
             //char[] delimiterChars = { ' ', ',', '.', ':', '(', ')', '{', '}', '\t', '\n' };
-            char[] delimiterChars = { ' ','\n' };
+            char[] delimiterChars = { ' ','\n', '\t', };
             string[] tokens = content.Split(delimiterChars);
 
             List<Token> ListTokens = new List<Token>();
@@ -99,11 +99,38 @@ namespace IDEMewtow
                 case var vwords when Regex.IsMatch(vword, @"melse"):
                     indice = 1;
                     break;
+                case var vwords when Regex.IsMatch(vword, @"mvar"):
+                    indice = 1;
+                    break;
                 case var vwords when Regex.IsMatch(vword, @"^[a-zA-Z0-9\s,]*$"):
                     indice = 2;
                     break;
+                case var vwords when Regex.IsMatch(vword, @"([+]|[-]|[\/]|[*])"):
+                    indice = 3;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @":="):
+                    indice = 4;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @"{"):
+                    indice = 5;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @"}"):
+                    indice = 6;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @"\("):
+                    indice = 7;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @"\)"):
+                    indice = 8;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @"\n"):
+                    indice = 9;
+                    break;
+                case var vwords when Regex.IsMatch(vword, @" "):
+                    indice = 10;
+                    break;
                 default:
-                    indice=10;
+                    indice=11;
                     break;
             }
             return indice;
@@ -121,7 +148,31 @@ namespace IDEMewtow
                     break;
                 case 2: des = "identificador";
                     break;
-                case 10: des ="desconocido";
+                case 3:
+                    des = "operador";
+                    break;
+                case 4:
+                    des = "asignacion";
+                    break;
+                case 5:
+                    des = "Abre_llave";
+                    break;
+                case 6:
+                    des = "Cierra_llave";
+                    break;
+                case 7:
+                    des = "Abre_parant";
+                    break;
+                case 8:
+                    des = "cierra_parent";
+                    break;
+                case 9:
+                    des = "saltolinea";
+                    break;
+                case 10:
+                    des = "espacio";
+                    break;
+                case 11: des ="desconocido";
                     break;
                 default:
                     des = "desconocido";

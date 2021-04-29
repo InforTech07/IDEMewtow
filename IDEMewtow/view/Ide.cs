@@ -140,67 +140,14 @@ namespace IDEMewtow
 
         }
 
-        public string expregular(string vword)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            var typestring = string.Empty;
-            switch (vword)
-            {
-                case var vwords when  Regex.IsMatch(vword, @"mnew"):
-                    typestring = "Reservada";
-                    break;
-
-                case var vwords when Regex.IsMatch(vword, @"mvoid"):
-                    typestring = "Reservada";
-                    break;
-                case var vwords when Regex.IsMatch(vword, @"\n"):
-                    typestring = "Salto";
-                    break;
-                default:
-                    typestring = "identificador";
-                    break;
-            }
-            return typestring;
-
+            this.Close();
+            Program.proyectmanager.Show();
         }
-        
-
     }
 
-    public class Mytoken
-    {
-        private string word;
-        private string typeword;
-
-        public Mytoken()
-        {
-            word = string.Empty;
-            typeword = string.Empty;
-
-        }
-        
-        public Mytoken(string vword,string vtype)
-        {
-            word = vword;
-            typeword = vtype;
-
-        }
-
-
-        public String Word
-        {
-            get { return word; }
-            set { word = value; }
-        }
-        public String Typewrod
-        {
-            get { return typeword; }
-            set { typeword = value; }
-        }
-
-
-
-
-    }
+    
 
 }
 
