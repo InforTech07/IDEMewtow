@@ -12,23 +12,20 @@ namespace IDEMewtow
         private string word;
         private string typeword;
         private int indice;
-        private int linetoken;
 
         public Token()
         {
             word = string.Empty;
             typeword = string.Empty;
             indice = 0;
-            linetoken = 0;
 
         }
 
-        public Token(string vword, string vtype, int ind,int vlinetoken)
+        public Token(string vword, string vtype, int ind)
         {
             word = vword;
             typeword = vtype;
             indice = ind;
-            linetoken = vlinetoken;
 
         }
         public String Word
@@ -47,11 +44,7 @@ namespace IDEMewtow
             get { return indice; }
             set { indice = value; }
         }
-        public int CountLine
-        {
-            get { return linetoken; }
-            set { linetoken = value; }
-        }
+
     }
 
     public class TokenGenerator
@@ -65,17 +58,16 @@ namespace IDEMewtow
         public static List<Token> CreateTokens(string content)
         {
             //char[] delimiterChars = { ' ', ',', '.', ':', '(', ')', '{', '}', '\t', '\n' };
-            char[] delimiterChars = {'\n'};
+            char[] delimiterChars = { ' ','\n', '\t', };
             string[] tokens = content.Split(delimiterChars);
-            int countline = 0;
+
             List<Token> ListTokens = new List<Token>();
 
             foreach (var pword in tokens)
             {
                 int indx = WordClasification(pword);
                 string description = TokenDescription(indx);
-                countline += 1;
-                Token NewToken = new Token(pword,description,indx,countline);
+                Token NewToken = new Token(pword,description,indx);
                 ListTokens.Add(NewToken);
             }
 
@@ -110,7 +102,7 @@ namespace IDEMewtow
                 case var vwords when Regex.IsMatch(vword, @"mvar"):
                     indice = 1;
                     break;
-                case var vwords when Regex.IsMatch(vword, @"^[a-z0-9A-Z\s,]*$"):
+                case var vwords when Regex.IsMatch(vword, @"^[a-zA-Z0-9\s,]*$"):
                     indice = 2;
                     break;
                 case var vwords when Regex.IsMatch(vword, @"([+]|[-]|[\/]|[*])"):
@@ -190,83 +182,6 @@ namespace IDEMewtow
 
             return des;
         }
-
-
-    }
-
-    public class Sentence
-    {
-        private string msentence;
-        private int linesentence;
-
-        public Sentence()
-        {
-            msentence = string.Empty;
-            linesentence = 0;
-
-        }
-
-        public Sentence(string vmsentece, int vlinesentence)
-        {
-            msentence = vmsentece;
-            linesentence = vlinesentence;
-        }
-
-
-
-        public String Msentence
-        {
-            get { return msentence; }
-            set { msentence = value; }
-        }
-
-        public int Linesentence
-        {
-            get { return linesentence; }
-            set { linesentence = value; }
-        }
-    }
-    
-    public class SentenceGenerator
-    {
-
-
-        public SentenceGenerator()
-        {
-
-        }
-
-        public static List<Sentence> CreateSentence(string content)
-        {
-            //char[] delimiterChars = { ' ', ',', '.', ':', '(', ')', '{', '}', '\t', '\n' };
-            char[] delimiterChars = { '\n' };
-            string[] mysentence = content.Split(delimiterChars);
-            int linesentes = 0;
-            List<Sentence> ListSentence = new List<Sentence>();
-            Stack<string> taskword = new Stack<string>();
-            List<Token> ListTokens = new List<Token>();
-
-
-
-            foreach (var sent in mysentence)
-            {
-                linesentes += 1;
-                Sentence NewSentence = new Sentence(sent, linesentes);
-                ListSentence.Add(NewSentence);
-                
-                
-            }
-
-            return ListSentence;
-        }
-
-        public string[] SepareSentence(string cont)
-        {
-            char[] delimiterChars = { ' ' };
-            string[] words = cont.Split(delimiterChars);
-            return words;
-        }
-
 
 
     }

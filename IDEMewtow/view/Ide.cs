@@ -19,8 +19,7 @@ namespace IDEMewtow
         {
             InitializeComponent();
             RequestProyectData(id);
-            LoadKeyWord();
-            
+
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -35,17 +34,7 @@ namespace IDEMewtow
 
             string path = Environment.rootDir + name;
             treeView1.Nodes.Add(Helpers.GenerateTreeView(path));
-            PrintLogProcess("-> Proyecto: [- " + name + " -] Cargado con exito..!");
         }
-
-        private void LoadKeyWord()
-        {
-            KeyWord kword = new KeyWord();
-            kword.CreateKeyWords();
-            PrintLogProcess("-> Se cargaron las palabras reservadas..!!");
-        }
-
-
 
         private void MouseDownWindow()
         {
@@ -53,32 +42,11 @@ namespace IDEMewtow
             MouseDownWindows.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void PrintLogProcess(string vprocess)
-        {
-            try
-            {
-                LogProcess.AddProcess(vprocess); 
-                var data = LogProcess.Getprocess();
-                TxtLogProcess.Text = string.Empty;
-                foreach (var l in data)
-                {
-
-                    TxtLogProcess.Text += l + "\r\n";
-                }
-
-            }
-            catch (System.ComponentModel.Win32Exception)
-            {
-                MessageBox.Show("Error en proceso.");
-            }
-
-        }
-
 
 
         private void Ide_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -86,6 +54,7 @@ namespace IDEMewtow
 
         private void btnopen_Click(object sender, EventArgs e)
         {
+
 
             string PathFile = Helpers.OpenFile();
             var Content = Helpers.ReadFile(PathFile);
@@ -97,7 +66,7 @@ namespace IDEMewtow
             NewTabPage.Controls.Add(NewTextBox);
             tabprimary.Controls.Add(NewTabPage);
             tabprimary.SelectedTab = NewTabPage;
-            PrintLogProcess("-> Abriendo archivo: " + NameFile);
+
         }
 
         private void treeView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -116,7 +85,6 @@ namespace IDEMewtow
                 NewTabpage.Controls.Add(NewTextBox);
                 tabprimary.Controls.Add(NewTabpage);
                 tabprimary.SelectedTab = NewTabpage;
-                PrintLogProcess("-> Abriendo Archivo: " + NameFile);
             }
             // If the file is not found, handle the exception and inform the user.
             catch (System.ComponentModel.Win32Exception)
@@ -145,38 +113,31 @@ namespace IDEMewtow
                     contenido = ctrl.Text;
                 }
 
-           
+            //  Console.WriteLine(namefile);
+            //  Console.WriteLine(contenido);
             Helpers.DeleteFile(pathfile);
             Helpers.SaveFile(pathfile, contenido);
             tab.Refresh();
-            PrintLogProcess("->Se Guardaron cambios de: " + namefile);
-           
+            //  Console.WriteLine(index);
+
         }
 
         
 
         private void BtnLexico_Click(object sender, EventArgs e)
         {
-            Components NewComponent = new Components();
-            var ntab=NewComponent.CreateTab("Analisis Lexico");
-            var ndgw = NewComponent.CreateDataGridView();
-            ndgw.DataSource = null;
+            dataGridView1.DataSource = null;
             var tab = tabprimary.SelectedTab;
             var contenido=string.Empty;
+
             var namefile = tab.Text;
             string proy = Ltitleproyect.Text + @"\";
             string pathfile = Path.Combine(Environment.rootDir, proy, namefile);
+
             contenido = Helpers.ReadFile(pathfile);
-            TokenMewtow TkM = new TokenMewtow();
-            TkM.LexiconPhase(contenido);
-            var paquete = TkM.GetLexicon();
-            
-           // var listsentece=SentenceGenerator.CreateSentence(contenido);
-            ndgw.DataSource = paquete;
-            ntab.Controls.Add(ndgw);
-            tabprimary.Controls.Add(ntab);
-            tabprimary.SelectedTab = ntab;
-            PrintLogProcess("-> Ejecutando Proceso Lexico de: " + namefile);
+            var data = TokenGenerator.CreateTokens(contenido);
+            dataGridView1.DataSource = data;
+
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -184,8 +145,6 @@ namespace IDEMewtow
             this.Close();
             Program.proyectmanager.Show();
         }
-
-        
     }
 
     

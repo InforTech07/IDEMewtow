@@ -16,7 +16,7 @@ namespace IDEMewtow
         private bool MLexico;
         private bool MSintactico;
         private bool MSemantico;
-        List<KeyWord> MyKeyWord = new List<KeyWord>();
+        public static List<TokenMewtow> ListToken = new List<TokenMewtow>();
         public TokenMewtow()
         {
             MToken = string.Empty;
@@ -80,26 +80,24 @@ namespace IDEMewtow
             set { MSemantico = value; }
         }
 
-        List<TokenMewtow> ListToken = new List<TokenMewtow>();
+        
 
         public void LexiconPhase(string ContentFile)
         {
             int x = 0;
             int y = 0;
             string[] DataSent = CreateSentence(ContentFile);
-            char[] delimiterChars = { ' ' };
-          //  List<TokenMewtow> ListToken = new List<TokenMewtow>();
-
+            char[] delimiterChar = { ' ' };
+        
             foreach(var mSent in DataSent)
             {
                 x += 1;
                 y += 1;
-                string[] mSen = mSent.Split(delimiterChars);
+                string[] mSen = mSent.Split(delimiterChar);
                 foreach(var mtok in mSen)
                 {
                     KeyWord kw = new KeyWord();
                     string typ = kw.IsValidToken(mtok);
-                    
                     TokenMewtow NewToken = new TokenMewtow(mtok, x, y, typ, true, false, false);
                     ListToken.Add(NewToken);
                     x += 1;
@@ -108,9 +106,6 @@ namespace IDEMewtow
             }
             
         }
-
-        
-
 
         public string[] CreateSentence(string Content)
         {
@@ -126,26 +121,9 @@ namespace IDEMewtow
         }
 
 
-        public void SynthacticPhase()
-        {
-            foreach(var Tk in ListToken)
-            {
-                string t = Tk.MToken.ToString();
-                IsValid(t);
-            }
-            
-            
-           
-        }
+       
 
-        public void IsValid(string v)
-        {
-            foreach(var ky in MyKeyWord)
-            {
-                
-            }
-
-        }
+       
 
 
 
