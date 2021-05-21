@@ -6,29 +6,16 @@ using System.Threading.Tasks;
 
 namespace IDEMewtow
 {
-    class LogProcess
+    class ProcessLog
     {
-        private string Process;
-      //  public static List<LogProcess> listprocess = new List<LogProcess>();
+        
         public static List<string> ListProcess = new List<string>();
 
-        public LogProcess()
+        public ProcessLog()
         {
-            Process = string.Empty;
+            
         }
 
-        public LogProcess(string vprocess)
-        {
-            Process = vprocess;
-        }
-
-        public String process
-        {
-            get { return Process; }
-            set { Process = value; }
-        }
-
-        
         public static void AddProcess(string process)
         {
             ListProcess.Add(process);
@@ -38,7 +25,6 @@ namespace IDEMewtow
         {
             return ListProcess;
         }
-
 
     }
 }

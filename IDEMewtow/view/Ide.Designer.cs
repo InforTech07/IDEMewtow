@@ -33,6 +33,7 @@ namespace IDEMewtow
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnCompiler = new System.Windows.Forms.Button();
             this.BtnBack = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.Ltitleproyect = new System.Windows.Forms.Label();
@@ -43,13 +44,13 @@ namespace IDEMewtow
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnSemantics = new System.Windows.Forms.Button();
+            this.BtnSintactico = new System.Windows.Forms.Button();
             this.BtnLexico = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DataGridViewSymbol = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabprimary = new System.Windows.Forms.TabControl();
@@ -57,13 +58,15 @@ namespace IDEMewtow
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabsecondary = new System.Windows.Forms.TabControl();
-            this.tablogerror = new System.Windows.Forms.TabPage();
-            this.tablog = new System.Windows.Forms.TabPage();
+            this.LogProcess = new System.Windows.Forms.TabPage();
+            this.TbxLogProcess = new System.Windows.Forms.TextBox();
+            this.LogError = new System.Windows.Forms.TabPage();
+            this.TbxLogError = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSymbol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,10 +75,13 @@ namespace IDEMewtow
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabsecondary.SuspendLayout();
+            this.LogProcess.SuspendLayout();
+            this.LogError.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.BtnCompiler);
             this.panel1.Controls.Add(this.BtnBack);
             this.panel1.Controls.Add(this.BtnSave);
             this.panel1.Controls.Add(this.Ltitleproyect);
@@ -90,6 +96,22 @@ namespace IDEMewtow
             this.panel1.Size = new System.Drawing.Size(1400, 39);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // BtnCompiler
+            // 
+            this.BtnCompiler.FlatAppearance.BorderColor = System.Drawing.Color.LimeGreen;
+            this.BtnCompiler.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
+            this.BtnCompiler.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
+            this.BtnCompiler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCompiler.Font = new System.Drawing.Font("Calibri Light", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCompiler.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.BtnCompiler.Location = new System.Drawing.Point(520, 8);
+            this.BtnCompiler.Name = "BtnCompiler";
+            this.BtnCompiler.Size = new System.Drawing.Size(97, 25);
+            this.BtnCompiler.TabIndex = 10;
+            this.BtnCompiler.Text = "🛠️ Compilar";
+            this.BtnCompiler.UseVisualStyleBackColor = true;
+            this.BtnCompiler.Click += new System.EventHandler(this.BtnCompiler_Click);
             // 
             // BtnBack
             // 
@@ -218,8 +240,8 @@ namespace IDEMewtow
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.BtnSemantics);
+            this.panel3.Controls.Add(this.BtnSintactico);
             this.panel3.Controls.Add(this.BtnLexico);
             this.panel3.Controls.Add(this.treeView1);
             this.panel3.Controls.Add(this.pictureBox1);
@@ -229,31 +251,33 @@ namespace IDEMewtow
             this.panel3.Size = new System.Drawing.Size(198, 681);
             this.panel3.TabIndex = 2;
             // 
-            // button2
+            // BtnSemantics
             // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
-            this.button2.Location = new System.Drawing.Point(13, 614);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(172, 40);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Semantico";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnSemantics.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
+            this.BtnSemantics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSemantics.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSemantics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
+            this.BtnSemantics.Location = new System.Drawing.Point(13, 614);
+            this.BtnSemantics.Name = "BtnSemantics";
+            this.BtnSemantics.Size = new System.Drawing.Size(172, 40);
+            this.BtnSemantics.TabIndex = 4;
+            this.BtnSemantics.Text = "Semantico";
+            this.BtnSemantics.UseVisualStyleBackColor = true;
+            this.BtnSemantics.Click += new System.EventHandler(this.BtnSemantics_Click);
             // 
-            // button1
+            // BtnSintactico
             // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
-            this.button1.Location = new System.Drawing.Point(13, 568);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 40);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Sintactico";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnSintactico.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
+            this.BtnSintactico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSintactico.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSintactico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(204)))));
+            this.BtnSintactico.Location = new System.Drawing.Point(13, 568);
+            this.BtnSintactico.Name = "BtnSintactico";
+            this.BtnSintactico.Size = new System.Drawing.Size(172, 40);
+            this.BtnSintactico.TabIndex = 3;
+            this.BtnSintactico.Text = "Sintactico";
+            this.BtnSintactico.UseVisualStyleBackColor = true;
+            this.BtnSintactico.Click += new System.EventHandler(this.BtnSintactico_Click);
             // 
             // BtnLexico
             // 
@@ -285,7 +309,7 @@ namespace IDEMewtow
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(139, 172);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -294,19 +318,19 @@ namespace IDEMewtow
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.dataGridView1);
+            this.panel4.Controls.Add(this.DataGridViewSymbol);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1076, 39);
+            this.panel4.Location = new System.Drawing.Point(992, 39);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(324, 681);
+            this.panel4.Size = new System.Drawing.Size(408, 681);
             this.panel4.TabIndex = 3;
             // 
-            // dataGridView1
+            // DataGridViewSymbol
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DataGridViewSymbol.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
+            this.DataGridViewSymbol.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridViewSymbol.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -314,8 +338,8 @@ namespace IDEMewtow
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewSymbol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridViewSymbol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -323,15 +347,15 @@ namespace IDEMewtow
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.GridColor = System.Drawing.Color.DodgerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 40);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(295, 614);
-            this.dataGridView1.TabIndex = 9;
+            this.DataGridViewSymbol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridViewSymbol.GridColor = System.Drawing.Color.DodgerBlue;
+            this.DataGridViewSymbol.Location = new System.Drawing.Point(17, 40);
+            this.DataGridViewSymbol.Name = "DataGridViewSymbol";
+            this.DataGridViewSymbol.RowHeadersVisible = false;
+            this.DataGridViewSymbol.RowHeadersWidth = 51;
+            this.DataGridViewSymbol.RowTemplate.Height = 24;
+            this.DataGridViewSymbol.Size = new System.Drawing.Size(379, 614);
+            this.DataGridViewSymbol.TabIndex = 9;
             // 
             // label3
             // 
@@ -358,7 +382,7 @@ namespace IDEMewtow
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabsecondary);
-            this.splitContainer1.Size = new System.Drawing.Size(878, 681);
+            this.splitContainer1.Size = new System.Drawing.Size(794, 681);
             this.splitContainer1.SplitterDistance = 556;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -370,7 +394,7 @@ namespace IDEMewtow
             this.tabprimary.Location = new System.Drawing.Point(0, 0);
             this.tabprimary.Name = "tabprimary";
             this.tabprimary.SelectedIndex = 0;
-            this.tabprimary.Size = new System.Drawing.Size(878, 556);
+            this.tabprimary.Size = new System.Drawing.Size(794, 556);
             this.tabprimary.TabIndex = 0;
             // 
             // tabPage2
@@ -381,7 +405,7 @@ namespace IDEMewtow
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(870, 522);
+            this.tabPage2.Size = new System.Drawing.Size(786, 522);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bienvenido";
             // 
@@ -399,44 +423,77 @@ namespace IDEMewtow
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(55, 120);
+            this.pictureBox2.Location = new System.Drawing.Point(154, 164);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(753, 374);
+            this.pictureBox2.Size = new System.Drawing.Size(455, 226);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
             // tabsecondary
             // 
-            this.tabsecondary.Controls.Add(this.tablogerror);
-            this.tabsecondary.Controls.Add(this.tablog);
+            this.tabsecondary.Controls.Add(this.LogProcess);
+            this.tabsecondary.Controls.Add(this.LogError);
             this.tabsecondary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabsecondary.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabsecondary.Location = new System.Drawing.Point(0, 0);
             this.tabsecondary.Name = "tabsecondary";
             this.tabsecondary.SelectedIndex = 0;
-            this.tabsecondary.Size = new System.Drawing.Size(878, 121);
+            this.tabsecondary.Size = new System.Drawing.Size(794, 121);
             this.tabsecondary.TabIndex = 0;
             // 
-            // tablogerror
+            // LogProcess
             // 
-            this.tablogerror.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
-            this.tablogerror.Font = new System.Drawing.Font("Calibri Light", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tablogerror.Location = new System.Drawing.Point(4, 25);
-            this.tablogerror.Name = "tablogerror";
-            this.tablogerror.Padding = new System.Windows.Forms.Padding(3);
-            this.tablogerror.Size = new System.Drawing.Size(870, 92);
-            this.tablogerror.TabIndex = 0;
-            this.tablogerror.Text = "Salida Error";
+            this.LogProcess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.LogProcess.Controls.Add(this.TbxLogProcess);
+            this.LogProcess.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogProcess.Location = new System.Drawing.Point(4, 30);
+            this.LogProcess.Name = "LogProcess";
+            this.LogProcess.Padding = new System.Windows.Forms.Padding(3);
+            this.LogProcess.Size = new System.Drawing.Size(786, 87);
+            this.LogProcess.TabIndex = 0;
+            this.LogProcess.Text = "Procesos";
             // 
-            // tablog
+            // TbxLogProcess
             // 
-            this.tablog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
-            this.tablog.Location = new System.Drawing.Point(4, 25);
-            this.tablog.Name = "tablog";
-            this.tablog.Padding = new System.Windows.Forms.Padding(3);
-            this.tablog.Size = new System.Drawing.Size(870, 92);
-            this.tablog.TabIndex = 1;
-            this.tablog.Text = "Salida ";
+            this.TbxLogProcess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.TbxLogProcess.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TbxLogProcess.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbxLogProcess.Font = new System.Drawing.Font("Calibri Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbxLogProcess.ForeColor = System.Drawing.Color.White;
+            this.TbxLogProcess.Location = new System.Drawing.Point(3, 3);
+            this.TbxLogProcess.Multiline = true;
+            this.TbxLogProcess.Name = "TbxLogProcess";
+            this.TbxLogProcess.ReadOnly = true;
+            this.TbxLogProcess.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TbxLogProcess.Size = new System.Drawing.Size(780, 81);
+            this.TbxLogProcess.TabIndex = 0;
+            // 
+            // LogError
+            // 
+            this.LogError.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.LogError.Controls.Add(this.TbxLogError);
+            this.LogError.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogError.Location = new System.Drawing.Point(4, 30);
+            this.LogError.Name = "LogError";
+            this.LogError.Padding = new System.Windows.Forms.Padding(3);
+            this.LogError.Size = new System.Drawing.Size(786, 87);
+            this.LogError.TabIndex = 1;
+            this.LogError.Text = "Error";
+            // 
+            // TbxLogError
+            // 
+            this.TbxLogError.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.TbxLogError.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TbxLogError.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbxLogError.Font = new System.Drawing.Font("Calisto MT", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbxLogError.ForeColor = System.Drawing.Color.Salmon;
+            this.TbxLogError.Location = new System.Drawing.Point(3, 3);
+            this.TbxLogError.Multiline = true;
+            this.TbxLogError.Name = "TbxLogError";
+            this.TbxLogError.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TbxLogError.Size = new System.Drawing.Size(780, 81);
+            this.TbxLogError.TabIndex = 0;
             // 
             // Ide
             // 
@@ -461,7 +518,7 @@ namespace IDEMewtow
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSymbol)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -471,6 +528,10 @@ namespace IDEMewtow
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabsecondary.ResumeLayout(false);
+            this.LogProcess.ResumeLayout(false);
+            this.LogProcess.PerformLayout();
+            this.LogError.ResumeLayout(false);
+            this.LogError.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -482,8 +543,8 @@ namespace IDEMewtow
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnSemantics;
+        private System.Windows.Forms.Button BtnSintactico;
         private System.Windows.Forms.Button BtnLexico;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -495,14 +556,17 @@ namespace IDEMewtow
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabsecondary;
-        private System.Windows.Forms.TabPage tablogerror;
-        private System.Windows.Forms.TabPage tablog;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TabPage LogProcess;
+        private System.Windows.Forms.TabPage LogError;
+        private System.Windows.Forms.DataGridView DataGridViewSymbol;
         private System.Windows.Forms.TabControl tabprimary;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button BtnBack;
+        private System.Windows.Forms.TextBox TbxLogProcess;
+        private System.Windows.Forms.Button BtnCompiler;
+        private System.Windows.Forms.TextBox TbxLogError;
     }
 }

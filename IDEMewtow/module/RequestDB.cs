@@ -21,6 +21,7 @@ namespace IDEMewtow
         private const string SqlDeleteKeyword = ScriptSQLdb.SqlDeleteKeyWord;
         private const string SqlDeleteGrammar = ScriptSQLdb.SqlDeleteGrammar;
         private const string SqlGetKeyWords = ScriptSQLdb.SqlGetKeyWord;
+        private const string SqlGetGrammar = ScriptSQLdb.SqlGetGrammar;
 
 
         public static  DataTable GetProyects()
@@ -131,6 +132,14 @@ namespace IDEMewtow
 
         }
 
+        public static DataSet GetGrammar()
+        {
+            DataSet dgr = new DataSet();
+            SQLiteDataAdapter dg = new SQLiteDataAdapter(SqlGetGrammar, ConnectionDB.instanceDB());
+            dg.Fill(dgr);
+            return dgr;
+
+        }
 
     }
 }

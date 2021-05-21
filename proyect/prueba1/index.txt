@@ -1,6 +1,0 @@
-mvar num1
-mvar num2
-mfunction mmain ()
-{
- mvar result := num1 + num2
-}

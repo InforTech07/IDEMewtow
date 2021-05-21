@@ -1,0 +1,12 @@
+// mi programa en mewtow
+mnamespace hello
+       mclass hi
+               mstatic mvoid mmain()
+                    mint dos
+                    mstring saludo
+                    mstring tres : 'hol'
+                    mint tres : 3
+                      mswitch(hola)
+                      mbreak
+                      mdo
+                      mwhile

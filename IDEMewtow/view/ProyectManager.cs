@@ -72,9 +72,10 @@ namespace IDEMewtow
 
         }
 
-        private void StatusMewtowDB()
+        private bool StatusMewtowDB()
         {
-            StatusDB = File.Exists(DirDb);
+            bool res = File.Exists(DirDb);
+            StatusDB = res;
             if (StatusDB)
             {
                 BtnDataBase.ForeColor = Color.FromArgb(0, 122, 204);
@@ -87,6 +88,8 @@ namespace IDEMewtow
                 LDataBase.ForeColor = Color.FromArgb(245, 83, 133);
                 LDataBase.Text = "😪 Faltan componenetes...!!";
             }
+
+            return res;
         }
 
         private void StatusKeyWord()
@@ -147,25 +150,19 @@ namespace IDEMewtow
         
         private bool StatusComponents()
         {
-            StatusMewtowDB();
-            StatusKeyWord();
-            StatusGrammar();
             bool Status = false;
-            if(StatusDB && StatusKeyWords && StatusGramatica)
+            bool res = StatusMewtowDB();
+            if (res == true)
             {
-                Status = true;
-              //  Console.WriteLine("Listo..");
-              //  TxbNameProyect.Visible = true;
-              //  TxtBSolution.Visible = true;
-              //  BtnCreateProyect.Visible = true;
-              //  LbNew.Visible = true;
-              //  Lbproyects.Visible = true;
-              //  Psettings.Visible = false;
-              //  LStatus.Visible = true;
-              //  LStatus.ForeColor = Color.FromArgb(0, 122, 204);
-              //  LStatus.Text = "😄 Empecemos..!!";
+                StatusKeyWord();
+                StatusGrammar();
+                
+                if (StatusDB && StatusKeyWords && StatusGramatica)
+                {
+                    Status = true;
+                }
             }
-
+            
             Console.WriteLine(StatusDB);
             Console.WriteLine(StatusKeyWords);
             Console.WriteLine(StatusGramatica);

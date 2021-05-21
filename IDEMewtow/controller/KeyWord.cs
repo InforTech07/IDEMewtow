@@ -104,14 +104,15 @@ namespace IDEMewtow
                 keywordexpresion = t.Mkeyword.ToString();
                 
                 Regex rgexKeyWord = new Regex(@"" + keywordexpresion + @"");
-                Regex rgexVariable= new Regex(@"^[a-z0-9A-Z,\s]*$");
+                Regex rgexVariable= new Regex(@"\b[a-zA-z]\w+");
                 Regex rgexNumber = new Regex(@"\d");
                 Regex rgexSpace = new Regex(@"\s");
-                Regex rgexString = new Regex(@"^\A'+[a-zA-Z]+'$");
+                Regex rgexString = new Regex(@"[""][\w\s]*[""]");
                 Regex rgexOperator = new Regex(@"([+]|[-]|[\/]|[*])");
+                Regex rgexAsignment = new Regex(@":=");
                 //  Regex rgexAssignament = new Regex(@":=");
 
-                if (rgexKeyWord.IsMatch(word))
+                if (rgexKeyWord.IsMatch(word.Trim()))
                 {
                     typeword=t.Mtype.ToString();
                     break;
@@ -120,29 +121,34 @@ namespace IDEMewtow
                 {
                     switch (word)
                     {
-                        case var v when rgexNumber.IsMatch(word):
+                        case var v when rgexNumber.IsMatch(word.Trim()):
                             typeword = "numero";                            
                             break;
-                        case var v when rgexOperator.IsMatch(word):
+                        case var v when rgexOperator.IsMatch(word.Trim()):
                             typeword = "operador";
                             break;
-                        case var v when rgexVariable.IsMatch(word):
-                            typeword = "variable";
+                      case var v when rgexVariable.IsMatch(word.Trim()):
+                          typeword = "variable";
+                          break;
+                        case var v when rgexAsignment.IsMatch(word.Trim()):
+                            typeword = "asignacion";
                             break;
-                        case var v when rgexSpace.IsMatch(word):
+                        case var v when rgexSpace.IsMatch(word.Trim()):
                             typeword = "espacio";
                             break;
-                        
                     }
                 }
-                
-                
-      
                
             }
 
             return typeword;
         }
+
+        public static List<KeyWord> GetKeywordList()
+        {
+            return KeyWordList;
+        }
+
 
     }
 }

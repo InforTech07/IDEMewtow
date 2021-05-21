@@ -19,5 +19,6 @@ namespace IDEMewtow
         public const string SqlDeleteKeyWord = "DELETE FROM PALABRACLAVE";
         public const string SqlDeleteGrammar = "DELETE FROM GRAMATICA";
         public const string SqlGetKeyWord = "SELECT PALABRA,TIPO_PALABRA,PALABRACS FROM PALABRACLAVE";
+        public const string SqlGetGrammar = "SELECT GRAMATICA_SENTENCIA FROM GRAMATICA";
     }
 }

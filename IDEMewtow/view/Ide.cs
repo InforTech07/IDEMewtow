@@ -19,6 +19,7 @@ namespace IDEMewtow
         {
             InitializeComponent();
             RequestProyectData(id);
+            LoadKeyWords();
 
         }
 
@@ -34,6 +35,7 @@ namespace IDEMewtow
 
             string path = Environment.rootDir + name;
             treeView1.Nodes.Add(Helpers.GenerateTreeView(path));
+            PrintLogProcess("-> Cargando proyecto: " + name);
         }
 
         private void MouseDownWindow()
@@ -42,6 +44,45 @@ namespace IDEMewtow
             MouseDownWindows.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+
+        private void LoadKeyWords()
+        {
+            KeyWord keywords = new KeyWord();
+            keywords.CreateKeyWords();
+            PrintLogProcess("-> Cargando palabras reservadas..!");
+        }
+
+
+        public void PrintLogProcess(string v_process)
+        {
+            ProcessLog.AddProcess(v_process);
+            var dataprocess = ProcessLog.Getprocess();
+            var lprocess = string.Empty;
+            foreach(var p in dataprocess)
+            {
+                lprocess += p + "\r\n";
+            }
+
+            TbxLogProcess.Text = lprocess;
+            TbxLogProcess.SelectionStart = TbxLogProcess.Text.Length;
+            TbxLogProcess.ScrollToCaret();
+            TbxLogProcess.Refresh();
+        }
+
+
+        private void PrintLogError()
+        {
+            var dataerror = ErrorLog.GetError();
+            var lError = string.Empty;
+            foreach(var e in dataerror)
+            {
+                lError += e + "\r\n";
+            }
+            TbxLogError.Text = lError;
+            TbxLogError.SelectionStart = TbxLogError.Text.Length;
+            TbxLogError.ScrollToCaret();
+            TbxLogError.Refresh();
+        }
 
 
         private void Ide_Load(object sender, EventArgs e)
@@ -54,8 +95,6 @@ namespace IDEMewtow
 
         private void btnopen_Click(object sender, EventArgs e)
         {
-
-
             string PathFile = Helpers.OpenFile();
             var Content = Helpers.ReadFile(PathFile);
             string NameFile = Path.GetFileName(PathFile);
@@ -66,6 +105,7 @@ namespace IDEMewtow
             NewTabPage.Controls.Add(NewTextBox);
             tabprimary.Controls.Add(NewTabPage);
             tabprimary.SelectedTab = NewTabPage;
+            PrintLogProcess("-> Abriendo archivo: " + NameFile);
 
         }
 
@@ -85,6 +125,7 @@ namespace IDEMewtow
                 NewTabpage.Controls.Add(NewTextBox);
                 tabprimary.Controls.Add(NewTabpage);
                 tabprimary.SelectedTab = NewTabpage;
+                PrintLogProcess("-> Abriendo archivo: " + NameFile);
             }
             // If the file is not found, handle the exception and inform the user.
             catch (System.ComponentModel.Win32Exception)
@@ -108,17 +149,18 @@ namespace IDEMewtow
 
 
             foreach (Control ctrl in tab.Controls)
+            {
                 if (ctrl is TextBox)
                 {
                     contenido = ctrl.Text;
                 }
 
-            //  Console.WriteLine(namefile);
-            //  Console.WriteLine(contenido);
+            }
+                
             Helpers.DeleteFile(pathfile);
             Helpers.SaveFile(pathfile, contenido);
             tab.Refresh();
-            //  Console.WriteLine(index);
+            PrintLogProcess("-> Guardando cambios de:" + namefile);
 
         }
 
@@ -126,18 +168,10 @@ namespace IDEMewtow
 
         private void BtnLexico_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            var tab = tabprimary.SelectedTab;
-            var contenido=string.Empty;
 
-            var namefile = tab.Text;
-            string proy = Ltitleproyect.Text + @"\";
-            string pathfile = Path.Combine(Environment.rootDir, proy, namefile);
 
-            contenido = Helpers.ReadFile(pathfile);
-            var data = TokenGenerator.CreateTokens(contenido);
-            dataGridView1.DataSource = data;
 
+            PrintLogProcess("-> Ejecutando Proceso lexico");
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -145,6 +179,61 @@ namespace IDEMewtow
             this.Close();
             Program.proyectmanager.Show();
         }
+
+        private void BtnCompiler_Click(object sender, EventArgs e)
+        {
+            ClearDataGrid();
+            ErrorLog.ResetErrorList();
+            var tab = tabprimary.SelectedTab;
+            var ContentFile = string.Empty;
+
+            var namefile = tab.Text;
+            string proy = Ltitleproyect.Text + @"\";
+            string pathfile = Path.Combine(Environment.rootDir, proy, namefile);
+
+            ContentFile = Helpers.ReadFile(pathfile);
+            PrintLogProcess("-> Compilando archivo: " + namefile);
+            TokenMewtow MewtowTok = new TokenMewtow();
+            bool Result = MewtowTok.CompilerFile(ContentFile);
+            if (Result)
+            {
+                var DataToken = MewtowTok.GetTokens();
+                DataGridViewSymbol.DataSource = DataToken;
+                DataGridViewSymbol.Columns[0].HeaderText = "Token";
+                DataGridViewSymbol.Columns[1].HeaderText = "X";
+                DataGridViewSymbol.Columns[2].HeaderText = "Y";
+                DataGridViewSymbol.Columns[3].HeaderText = "Tipo";
+                DataGridViewSymbol.Columns[4].Visible = false;
+                DataGridViewSymbol.Columns[5].Visible = false;
+                DataGridViewSymbol.Columns[6].Visible = false;
+                DataGridViewSymbol.AutoResizeColumns();
+                DataGridViewSymbol.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                PrintLogProcess("-> Imprimiendo Tabla Simbolo..");
+            }
+
+            PrintLogProcess("-> Fin de compilacion: Error(" + ErrorLog.ContError + ")");
+            PrintLogError();
+        }
+
+        private void BtnSintactico_Click(object sender, EventArgs e)
+        {
+            
+            PrintLogProcess("-> Ejecutantdo Fase Sintactico");
+        }
+
+        private void BtnSemantics_Click(object sender, EventArgs e)
+        {
+            PrintLogProcess("-> Ejecutando Fase Semantico");
+        }
+
+        private void ClearDataGrid()
+        {
+            DataGridViewSymbol.DataSource = null;
+        }
+
+
+
+
     }
 
     
