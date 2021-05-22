@@ -52,7 +52,7 @@ namespace IDEMewtow
                 // Create the file, or overwrite if the file exists.
                 using (FileStream fs = File.Create(fullpath))
                 {
-                    byte[] info = new UTF8Encoding(true).GetBytes("programa en mewtow.");
+                    byte[] info = new UTF8Encoding(true).GetBytes("// Lenguaje  mewtow +bienvenido+.");
                     // Add some information to the file.
                     fs.Write(info, 0, info.Length);
                 }

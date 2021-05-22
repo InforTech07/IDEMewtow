@@ -1,12 +1,17 @@
 // mi programa en mewtow
 mnamespace hello
+{
        mclass hi
-               mstatic mvoid mmain()
+         {
+               mstatic mvoid mmain
                     mint dos
                     mstring saludo
-                    mstring tres : 'hol'
-                    mint tres : 3
+                    mstring tres := 'hol'
+                    mint tres := 3
+                      mdo
                       mswitch(hola)
                       mbreak
-                      mdo
-                      mwhile
+                     mif tres = 3
+                      mwhile(vamos)
+       
+}

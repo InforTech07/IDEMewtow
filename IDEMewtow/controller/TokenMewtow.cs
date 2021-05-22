@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace IDEMewtow
 {
@@ -18,7 +19,12 @@ namespace IDEMewtow
         private bool MSintactico;
         private bool MSemantico;
         public static List<TokenMewtow> ListToken = new List<TokenMewtow>();
-        public static List<string> ListSentence = new List<string>();
+        public static List<string[]> ListSentence = new List<string[]>();
+
+        //------flags estados------
+        public static int Mbracketopen = 0;
+        public static int Mbracketclose = 0;
+
         public TokenMewtow()
         {
             MToken = string.Empty;
@@ -87,6 +93,9 @@ namespace IDEMewtow
         public bool CompilerFile(string ContentFile)
         {
             ClearListToken();
+            ClearListSentence();
+            Mbracketclose = 0;
+            Mbracketopen = 0;
             int x = 0;
             int y = 0;
             string[] DataSent = CreateSentence(ContentFile);
@@ -98,7 +107,6 @@ namespace IDEMewtow
                 y += 1;
 
                 var MSentence = mSent.Trim();
-
                 Grammar gra = new Grammar();
                 int result = gra.ValidSentence(MSentence, y);
                 if (result == 1)
@@ -119,6 +127,17 @@ namespace IDEMewtow
                     TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "comentario", true, false, false);
                     ListToken.Add(TokenComment);
 
+                }else if (result == 3)
+                {
+                    TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "abre-llave", true, false, false);
+                    ListToken.Add(TokenComment);
+                    Mbracketopen += 1;
+                }
+                else if (result == 4)
+                {
+                    TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "llave-cierra", true, false, false);
+                    ListToken.Add(TokenComment);
+                    Mbracketclose += 1;
                 }
 
                 x = 0;
@@ -126,6 +145,14 @@ namespace IDEMewtow
                 
             }
 
+            int resultbracket = Mbracketopen - Mbracketclose;
+            if (resultbracket > 0)
+            {
+                ErrorLog.AddError("-> Tienes (" + resultbracket +") llaves sin cerrar");
+            }else if(resultbracket < 0)
+            {
+                ErrorLog.AddError("-> Tienes (" + resultbracket * -1 + ") llaves sin abrir");
+            }
             return true;
         }
 
@@ -146,7 +173,38 @@ namespace IDEMewtow
         {
             ListToken.Clear();
         }
-       
+
+        public void ClearListSentence()
+        {
+            ListSentence.Clear();
+        }
+
+        public static void AddListSentence(string vgramar)
+        {
+            char[] delim = { ';' };
+            string[] sentencetoken = vgramar.Split(delim);
+            ListSentence.Add(sentencetoken);
+        }
+
+
+        public static TreeNode GenerateTreeSyntactic()
+        {
+            TreeNode Nod = new TreeNode("Lenguaje Mewtow");
+            
+
+           
+            foreach (var Wn in ListSentence)
+            {
+                
+                TreeNode Nnond = new TreeNode(Wn[0] + "-" + Wn[1]);
+                TreeNode Nond = new TreeNode(Wn[2]);
+                Nnond.Nodes.Add(Nond);
+                Nod.Nodes.Add(Nnond);
+                
+            }
+
+            return Nod;
+        }
 
     }
     

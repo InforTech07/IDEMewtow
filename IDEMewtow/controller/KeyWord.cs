@@ -103,7 +103,7 @@ namespace IDEMewtow
                 Console.WriteLine(t.Mkeyword.ToString());
                 keywordexpresion = t.Mkeyword.ToString();
                 
-                Regex rgexKeyWord = new Regex(@"" + keywordexpresion + @"");
+                Regex rgexKeyWord = new Regex(@"^" + keywordexpresion + "");
                 Regex rgexVariable= new Regex(@"\b[a-zA-z]\w+");
                 Regex rgexNumber = new Regex(@"\d");
                 Regex rgexSpace = new Regex(@"\s");

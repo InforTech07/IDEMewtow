@@ -20,6 +20,7 @@ namespace IDEMewtow
             InitializeComponent();
             RequestProyectData(id);
             LoadKeyWords();
+            LoadGrammar();
 
         }
 
@@ -52,7 +53,13 @@ namespace IDEMewtow
             PrintLogProcess("-> Cargando palabras reservadas..!");
         }
 
-
+        private void LoadGrammar()
+        {
+            Grammar loadgrammar = new Grammar();
+            loadgrammar.CreateWordCsharp();
+            PrintLogProcess("-> Cargando gramatica");
+        }
+        
         public void PrintLogProcess(string v_process)
         {
             ProcessLog.AddProcess(v_process);
@@ -168,10 +175,37 @@ namespace IDEMewtow
 
         private void BtnLexico_Click(object sender, EventArgs e)
         {
+            Components NewComp = new Components();
+            var NTabPage = NewComp.CreateTab("Lexico");
+            var NDataGridView = NewComp.CreateDataGridView();
+            TokenMewtow MTok = new TokenMewtow();
+            var DataTokens = MTok.GetTokens();
+            if(DataTokens != null)
+            {
+                NDataGridView.DataSource = DataTokens;
+                NTabPage.Controls.Add(NDataGridView);
+                tabprimary.Controls.Add(NTabPage);
+                tabprimary.SelectedTab = NTabPage;
+                NDataGridView.Columns[0].HeaderText = "Token";
+                NDataGridView.Columns[1].HeaderText = "Indice X";
+                NDataGridView.Columns[2].HeaderText = "Indice Y";
+                NDataGridView.Columns[3].HeaderText = "Clasificacion";
+                NDataGridView.Columns[4].HeaderText = "Fase Lexico";
+                NDataGridView.Columns[5].Visible = false;
+                NDataGridView.Columns[6].Visible = false;
+                NDataGridView.AutoResizeColumns();
+                NDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                PrintLogProcess("-> Ejecutando Proceso lexico");
 
-
-
-            PrintLogProcess("-> Ejecutando Proceso lexico");
+            }
+            else
+            {
+                Helpers.MewtowMessage("No ha compilado. !Hagalo!", "Error");
+                PrintLogProcess("-> Fallo en ejecucion lexico...");
+                return;
+            }
+            
+            
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -217,7 +251,18 @@ namespace IDEMewtow
 
         private void BtnSintactico_Click(object sender, EventArgs e)
         {
-            
+            Components NewCompp = new Components();
+            var NTabPagee = NewCompp.CreateTab("Sintactico");
+            TreeView treesintactic = new TreeView();
+
+            treesintactic.Nodes.Add(TokenMewtow.GenerateTreeSyntactic());
+            treesintactic.Dock = DockStyle.Fill;
+            treesintactic.BackColor = Color.FromArgb(28, 30, 38);
+            treesintactic.ForeColor = Color.White;
+
+            NTabPagee.Controls.Add(treesintactic);
+            tabprimary.Controls.Add(NTabPagee);
+            tabprimary.SelectedTab = NTabPagee;
             PrintLogProcess("-> Ejecutantdo Fase Sintactico");
         }
 
@@ -231,9 +276,50 @@ namespace IDEMewtow
             DataGridViewSymbol.DataSource = null;
         }
 
+        
 
+        private void  BtnNewFile_Click(object sender, EventArgs e)
+        {
+            
+            TxNameFile.Visible = true;
+            BtnNewFile.Text = "crear";
+            if(TxNameFile.Text != "nombre")
+            {
+                CreateFile.NewFile(Ltitleproyect.Text, TxNameFile.Text);
+                string pat = Environment.rootDir + Ltitleproyect.Text;
+                treeView1.Nodes.Clear();
+                treeView1.Nodes.Add(Helpers.GenerateTreeView(pat));
+                PrintLogProcess("-> Se creo un nuevo archivo [" + TxNameFile.Text + "]");
+                BtnNewFile.Text = "Nuevo Archivo";
+                TxNameFile.Visible = false;
+            }
 
+            return;
+        }
 
+        private void TxNameFile_Enter(object sender, EventArgs e)
+        {
+            Helpers h = new Helpers();
+            h.PlaceholderEnter(TxNameFile, "nombre");
+        }
+
+        private void TxNameFile_Leave(object sender, EventArgs e)
+        {
+            Helpers hh = new Helpers();
+            hh.PlaceholderLeave(TxNameFile, "nombre");
+        }
+
+        private void BtnMinMaxWindows_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == 0)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
     }
 
     
