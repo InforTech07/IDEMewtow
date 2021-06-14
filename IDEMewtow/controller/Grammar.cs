@@ -9,31 +9,41 @@ using System.Text.RegularExpressions;
 
 namespace IDEMewtow
 {
+    /// <summary>
+    /// Grammar: clase que se encarga de contener, y disponer la gramatica que se utilizara en el lenguaje.
+    /// </summary>
     class Grammar
     {
-
+        /// <summary>
+        /// atributos de la clase.
+        /// </summary>
         private string Mgrammar;
         private string Mtype;
         public string Mwordcs;
 
-        public static string CNamespace;
-        public static string CClass;
-        public static string CStatic;
-        public static string CVoid;
-        public static string CMain;
-        public static string CInt;
-        public static string CString;
-        public static string CConsoleWriteline;
-        public static string CDo;
-        public static string CSwitch;
-        public static string CCase;
-        public static string CWhile;
-        public static string CBreak;
-        public static string CIf;
-        //----------------------
-
+        public static string MNamespace;
+        public static string MClass;
+        public static string MStatic;
+        public static string MVoid;
+        public static string MMain;
+        public static string MInt;
+        public static string MString;
+        public static string MConsole;
+        public static string MReadline;
+        public static string MSwitch;
+        public static string MCase;
+        public static string MBreak;
+        public static string MDefault;
+        public static string MIf;
+        public static string MDo;
+        public static string MWhile;
+        /// <summary>
+        /// listado encargado de almacenar las gramaticas del lenguaje.
+        /// </summary>
         public static List<Grammar> mygrammar = new List<Grammar>();
-        
+        /// <summary>
+        /// constructor de la clase sin parametros
+        /// </summary>
         public Grammar()
         {
             Mgrammar = string.Empty;
@@ -41,6 +51,12 @@ namespace IDEMewtow
             Mwordcs = string.Empty;
         }
 
+        /// <summary>
+        /// constructor con parametros
+        /// </summary>
+        /// <param name="vgrammar">sentencia de gramatica</param>
+        /// <param name="vtype">tipo de la gramatica;metodo principal, funcion, asignacion</param>
+        /// <param name="vwordc"></param>
         public Grammar(string vgrammar,string vtype, string vwordc)
         {
             Mgrammar = vgrammar;
@@ -110,162 +126,184 @@ namespace IDEMewtow
 
         public  void CreateWordCsharp()
         {
-            var dat = RequestDB.GetKeyWords();
+          //  var dat = RequestDB.GetKeyWords();
 
-            mygrammar = dat.Tables[0].AsEnumerable().Select(
-                dataRow => new Grammar
-                {
-                    Mgrammar = dataRow.Field<string>("palabra"),
-                    Mtype = dataRow.Field<string>("tipo_palabra"),
-                    Mwordcs = dataRow.Field<string>("palabracs"),
+          //  mygrammar = dat.Tables[0].AsEnumerable().Select(
+          //      dataRow => new Grammar
+           //     {
+           //         Mgrammar = dataRow.Field<string>("palabra"),
+            //        Mtype = dataRow.Field<string>("tipo_palabra"),
+             //       Mwordcs = dataRow.Field<string>("palabracs"),
 
-                }).ToList();
+               // }).ToList();
 
 
-           // var data = KeyWord.GetKeywordList();
-            foreach(var d in mygrammar)
+            var data = KeyWord.GetKeywordList();
+            foreach(var d in data)
             {
-                
-                string wordc = d.Mwordcs.ToString();
+
+                // string wordc = d.mkeyword.ToString();
+                string wordc = d.mwordCs.ToString();
+               // string wordc = d.Mwordcs.ToString();
                 switch (wordc)
                 {
                    
                     case var gw when  Regex.IsMatch(wordc,@"namespace"):
-                        CNamespace = d.Mgrammar.ToString();
+                        MNamespace = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"class"):
-                        CClass = d.Mgrammar.ToString();
+                        MClass = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"static"):
-                        CStatic = d.Mgrammar.ToString();
+                        MStatic = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"void"):
-                        CVoid = d.Mgrammar.ToString();
+                        MVoid = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"main"):
-                        CMain = d.Mgrammar.ToString();
+                        MMain = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"int"):
-                        CInt = d.Mgrammar.ToString();
+                        MInt = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"string"):
-                        CString = d.Mgrammar.ToString();
+                        MString = d.mkeyword.ToString();
                         break;
-                    case var gw when Regex.IsMatch(wordc, @"consoleWriteline"):
-                        CConsoleWriteline = d.Mgrammar.ToString();
+                    case var gw when Regex.IsMatch(wordc, @"consolewriteline"):
+                        MConsole = d.mkeyword.ToString();
                         break;
-                    case var gw when Regex.IsMatch(wordc, @"do"):
-                        CDo = d.Mgrammar.ToString();
+                    case var gw when Regex.IsMatch(wordc, @"consolereadline"):
+                        MReadline = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"switch"):
-                        CSwitch = d.Mgrammar.ToString();
+                        MSwitch = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"case"):
-                        CCase = d.Mgrammar.ToString();
-                        break;
-                    case var gw when Regex.IsMatch(wordc, @"while"):
-                        CWhile = d.Mgrammar.ToString();
-                        break;
-                    case var gw when Regex.IsMatch(wordc, @"if"):
-                        CIf = d.Mgrammar.ToString();
+                        MCase = d.mkeyword.ToString();
                         break;
                     case var gw when Regex.IsMatch(wordc, @"break"):
-                        CBreak = d.Mgrammar.ToString();
+                        MBreak = d.mkeyword.ToString();
+                        break;
+                    case var gw when Regex.IsMatch(wordc, @"default"):
+                        MDefault = d.mkeyword.ToString();
+                        break;
+                    case var gw when Regex.IsMatch(wordc, @"if"):
+                        MIf = d.mkeyword.ToString();
+                        break;
+                    case var gw when Regex.IsMatch(wordc, @"do"):
+                        MDo = d.mkeyword.ToString();
+                        break;
+                    case var gw when Regex.IsMatch(wordc, @"while"):
+                        MWhile = d.mkeyword.ToString();
                         break;
                     default:
                         Console.WriteLine("error" + wordc);
-                        ProcessLog.AddProcess("El: [" + wordc + "] No es valido para el lenguaje");
+                        ProcessLog.AddProcess("Advertencia.!.El: [" + wordc + "] No es valido para el lenguaje");
                         break;
                 }
             }
+
         }
-
-
         public int ValidSentence(string Sentence, int line)
         {
             int res = 0;
             string Mgrammarsentence = string.Empty;
-            Regex rgexcomment = new Regex(@"//\s\b[a-zA-z]\w+");
-            Regex rgexnamespace = new Regex(@"^" + CNamespace + @"\s\b[a-zA-z]\w+");
-            Regex rgexclass = new Regex(@"^" + CClass + @"\s\b[a-zA-z]\w+");
-            Regex rgexstatic = new Regex(@"" + CStatic + @"\s" + CVoid + @"\s" + CMain + "");
-            Regex rgexint = new Regex(@"^" + CInt + @"\s\b[a-zA-z]");
-            Regex rgexintasig = new Regex(@"^" + CInt + @"\s\b[a-zA-z]\w+\s\:=\s\d");
-            Regex rgexstringasig = new Regex(@"^" + CString + @"\s\b[a-zA-z]\w+\s\:=\s\'\b[a-z0-9A-z,\s]\w+'$");
-            Regex rgexstring = new Regex(@"^" + CString + @"\s\b[a-zA-z]");
-            Regex rgexwriteline = new Regex(@"^" + CConsoleWriteline + @"\(\b[a-z0-9A-z,\s]\w+\)$");
-            Regex rgexswitch = new Regex(@"^" + CSwitch + @"\([a-zA-Z]\w+\)");
-            Regex rgexbreak = new Regex(@"^" + CBreak + "");
-            Regex rgexdo = new Regex(@"^" + CDo + "");
-            Regex rgexwhile = new Regex(@"" + CWhile+ @"[\(][a-zA-z]\w+[\)]");
-            Regex rgexbraketopen = new Regex(@"\{");
-            Regex rgexbraketclose = new Regex(@"\}");
-            Regex rgexif = new Regex(@""+CIf+ @"\s\b[a-zA-z]\w+\s[=]\s\d");
-
+            Regex regexComment = new Regex(@"//\s\b[a-zA-z]\w+");
+            Regex regexNamespace = new Regex(@"" + MNamespace + @"\s\w+$");
+            Regex regexClass = new Regex(@"" + MClass + @"\s\w+$");
+            Regex regexStatic = new Regex(@"" + MStatic + @"\s" + MVoid + @"\s" + MMain + "$");
+            Regex regexDeclareVariable = new Regex(@"" + MInt + @"|"+ MString + @"\s\w+$");
+            Regex regexIntAsig = new Regex(@"\w+\s+(\:\=)+\s+\d$");
+            Regex regexStringAsig = new Regex(@"\w+\s+(\:\=)+\s+(\'[\w\s\:\-\,]*\')$");
+            Regex regexConsole = new Regex(@""+ MConsole + @"(\([\w\s\:\-\,]*\))$"); ;
+            Regex regexReadLine = new Regex(@""+ MReadline +@"|(\w+\s+(\:\=)\s" + MReadline + @")");
+            Regex regexSwitch = new Regex(@"" + MSwitch + @"+(\(\w+\))$");
+            Regex regexCase = new Regex(@"" + MCase + @"\s(\'\w+\'|\d)\:$");
+            Regex regexBreak = new Regex(@"" + MBreak +"");
+            Regex regexDefault = new Regex(@"" + MDefault + @"\:$");
+            Regex rgexif = new Regex(@""+MIf+@"\s+(\w+|\d)+\s+(\=\=|\!\=|\>|\<)+\s+(\w+|\d)\:$");
+            Regex regexDo = new Regex(@"" + MDo + "");
+            Regex regexWhile = new Regex(@"" + MWhile + @"[\(][a-zA-z]\w+[\)]");
+            Regex regexBraketopen = new Regex(@"\{");
+            Regex regexBraketclose = new Regex(@"\}");
+            Regex regexOperationAsig = new Regex(@"\w+\s+(\:\=)+\s+(\d|\w+)+\s+(\*|-|\/|\+)+\s+(\d|\w+)$");
             switch (Sentence)
             {
-                case var vv when rgexbraketopen.IsMatch(Sentence):
+                case var vv when regexBraketopen.IsMatch(Sentence):
                     Mgrammarsentence = "[Abre llave]";
                     res = 3;
                     break;
-                case var vv when rgexbraketclose.IsMatch(Sentence):
+                case var vv when regexBraketclose.IsMatch(Sentence):
                     Mgrammarsentence = "[Cierra llave]";
                     res = 4;
                     break;
-                case var vv when rgexcomment.IsMatch(Sentence):
+                case var vv when regexComment.IsMatch(Sentence):
                     Mgrammarsentence = "[un comentario]";
                     res = 2;
                     break;
-                case var vv when rgexnamespace.IsMatch(Sentence):
+                case var vv when regexNamespace.IsMatch(Sentence):
                     Mgrammarsentence = "[Declaracion del mnamespace]";
                     res = 1;
                     break;
-                case var vv when rgexclass.IsMatch(Sentence):
+                case var vv when regexClass.IsMatch(Sentence):
                     Mgrammarsentence = "[Declaracion de mclase]";
                     res = 1;
                     break;
-                case var vv when rgexstatic.IsMatch(Sentence):
+                case var vv when regexStatic.IsMatch(Sentence):
                     Mgrammarsentence = "[Declaracion de metodo principal mstatic]";
                     res = 1;
                     break;
-                case var vv when rgexint.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion de variable Entero]";
+                case var vv when regexDeclareVariable.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion de variable]";
                     res = 1;
                     break;
-                case var vv when rgexintasig.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion y asignacion de variable entero]";
+                case var vv when regexIntAsig.IsMatch(Sentence):
+                    Mgrammarsentence = "[Asignacion de variable entero]";
+                   
                     res = 1;
                     break;
-                case var vv when rgexstring.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion de variable typo mstring]";
+                case var vv when regexStringAsig.IsMatch(Sentence):
+                    Mgrammarsentence = "[Asignacion de variable string]";
                     res = 1;
                     break;
-                case var vv when rgexstringasig.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion y asignacion de variable mstring]";
+                case var vv when regexOperationAsig.IsMatch(Sentence):
+                    Mgrammarsentence = "[Asignacion y operacion de varibles,Enteros]";
                     res = 1;
                     break;
-                case var vv when rgexswitch.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion del control mcase]";
+                case var vv when regexConsole.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del metodo ->" + Sentence + "]";
                     res = 1;
                     break;
-                case var vv when rgexwriteline.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion del metodo mWriteline]";
+                case var vv when regexSwitch.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del control ->" + Sentence +"]";
                     res = 1;
                     break;
-                case var vv when rgexbreak.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion del interruptor mbreak]";
+                case var vv when regexCase.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del opcion ->" + Sentence + "]";
+                    res = 1;
+                    break;
+                case var vv when regexDefault.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del opcion ->" + Sentence + "]";
+                    res = 1;
+                    break;
+                case var vv when regexBreak.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del interruptor ->" + Sentence + "]";
+                    res = 1;
+                    break;
+                case var vv when regexReadLine.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion la sentencia ReadLine]";
                     res = 1;
                     break;
                 case var vv when rgexif.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion del controlador mIF]";
+                    Mgrammarsentence = "[Declaracion del controlador " + Sentence + "]";
                     res = 1;
                     break;
-                case var vv when rgexdo.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion del incio de bucle mDo]";
+                case var vv when regexDo.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del incio de bucle -> " + Sentence + "]";
                     res = 1;
                     break;
-                case var vv when rgexwhile.IsMatch(Sentence):
-                    Mgrammarsentence = "[Declaracion del bucle mwhile]";
+                case var vv when regexWhile.IsMatch(Sentence):
+                    Mgrammarsentence = "[Declaracion del bucle ->" + Sentence + "]";
                     res = 1;
                     break;
                 default:
@@ -279,16 +317,13 @@ namespace IDEMewtow
             return res;
         }
 
+        public void validAsig(string sentence)
+        {
 
 
+        }
 
-
-
-
+    
     }
-
-
-
-
 
 }

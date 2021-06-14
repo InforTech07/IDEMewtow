@@ -1,4 +1,5 @@
 // Lenguaje  mewtow +bienvenido+.
+// Lenguaje  mewtow +bienvenido+.
 mnamespace CalculadoraMewtow
 {
 // Nombre de nuestra clase.
@@ -22,11 +23,11 @@ mnamespace CalculadoraMewtow
           {
                   mcase 1:
                               result := pnum + snum
-                              mconsole(la suma es:,  result
+                              mconsole(la suma es:,  result)
                               mbreak
                   mcase 2:
                               result := pnum - snum
-                              mconsole(la resta es:,  result)
+                              mconsole(la resta es: ,  result)
                               mbreak
                   mcase 3:
                               result := pnum * snum
@@ -44,4 +45,3 @@ mnamespace CalculadoraMewtow
         }
     }
 }
-mif opcion == 2:

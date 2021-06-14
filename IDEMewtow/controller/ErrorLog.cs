@@ -17,8 +17,6 @@ namespace IDEMewtow
         {
 
         }
-
-
         public static void AddError(string v_error)
         {
             ContError += 1;

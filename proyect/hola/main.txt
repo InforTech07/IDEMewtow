@@ -1,0 +1,8 @@
+// Lenguaje  mewtow +bienvenido+.
+mmain1
+mstatic mvoid mmain1
+mstatic mvoid mmain1
+mmain1
+mint dos
+mint tres
+mint result := dos + tres

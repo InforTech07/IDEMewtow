@@ -32,6 +32,9 @@ namespace IDEMewtow
             tb.Dock = DockStyle.Fill;
             tb.BackColor = Color.FromArgb(28, 30,38);
             tb.ForeColor = Color.White;
+            tb.ScrollBars = ScrollBars.Vertical;
+            tb.AcceptsTab = true;
+            tb.WordWrap = true;
             return tb;
         }
 

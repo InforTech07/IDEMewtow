@@ -86,7 +86,7 @@
     <Compile Include="controller\KeyWord.cs" />
     <Compile Include="controller\Grammar.cs" />
     <Compile Include="controller\LogError.cs" />
-    <Compile Include="ErrorLog.cs" />
+    <Compile Include="controller\ErrorLog.cs" />
     <Compile Include="module\DBMewtow.cs" />
     <Compile Include="controller\Helpers.cs" />
     <Compile Include="module\RequestDB.cs" />

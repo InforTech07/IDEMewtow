@@ -3,7 +3,7 @@ mnamespace hello
 {
        mclass hi
          {
-               mstatic mvoid mmain
+               mstatic mvoid mmain:
                     mint dos
                     mstring saludo
                     mstring tres := 'hol'
@@ -13,5 +13,5 @@ mnamespace hello
                       mbreak
                      mif tres = 3
                       mwhile(vamos)
-       
+       }
 }

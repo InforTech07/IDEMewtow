@@ -268,7 +268,7 @@ namespace IDEMewtow
 
         private void BtnSemantics_Click(object sender, EventArgs e)
         {
-            PrintLogProcess("-> Ejecutando Fase Semantico");
+           
         }
 
         private void ClearDataGrid()

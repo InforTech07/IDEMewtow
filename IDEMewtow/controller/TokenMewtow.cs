@@ -9,8 +9,15 @@ using System.Windows.Forms;
 
 namespace IDEMewtow
 {
+    /// <summary>
+    /// clase TokenMewtow crea la plantilla para evaluar las fases de un compilador 
+    /// </summary>
     class TokenMewtow
     {
+        /// <summary>
+        /// Declaracion de variables privadas de la clase en donde se alamacen los tokens
+        /// listToken: alamacen los tokes ya procesados con sus resultados.
+        /// </summary>
         private string MToken;
         private int Mx;
         private int My;
@@ -20,11 +27,13 @@ namespace IDEMewtow
         private bool MSemantico;
         public static List<TokenMewtow> ListToken = new List<TokenMewtow>();
         public static List<string[]> ListSentence = new List<string[]>();
-
-        //------flags estados------
+        //identificadores que alamacenan los estados de las llaves
         public static int Mbracketopen = 0;
         public static int Mbracketclose = 0;
 
+        /// <summary>
+        /// TokenMewtow: metodo constructor sin parametros.
+        /// </summary>
         public TokenMewtow()
         {
             MToken = string.Empty;
@@ -36,6 +45,16 @@ namespace IDEMewtow
             MSemantico = false;
         }
 
+        /// <summary>
+        /// constructor de la clase que acepta parametros.
+        /// </summary>
+        /// <param name="vToken"></param> recibe el token que se evalua
+        /// <param name="vX"></param> recibe la posicion en x del token
+        /// <param name="vY"></param> recibe la posicion o linea en que se encuentra el token
+        /// <param name="vType"></param> recibe el tipo de token 
+        /// <param name="vLexico"></param> recibe true si paso la gase lexico o false en caso de un error.
+        /// <param name="vSintactico"></param> true si paso  la fase sintactico o false en caso de error.
+        /// <param name="vSemantico"></param> true si paso la fase semantica o false en caso de error.
         public TokenMewtow(string vToken, int vX, int vY,string vType,bool vLexico, bool vSintactico,bool vSemantico)
         {
             MToken = vToken;
@@ -47,6 +66,9 @@ namespace IDEMewtow
             MSemantico = vSemantico;
         }
 
+        /// <summary>
+        /// declaracion de get y set de los atributos de la clase.
+        /// </summary>
         public String mToken
         {
             get { return MToken; }
@@ -89,7 +111,11 @@ namespace IDEMewtow
         }
 
         
-
+        /// <summary>
+        /// metodo compiler: se encarga de ejecutar todo el proceso de compilar el lenguaje.
+        /// </summary>
+        /// <param name="ContentFile"></param> recibe el string del archivo de texto.
+        /// <returns></returns> retorna un true despues de haber culminado todo el proceso.
         public bool CompilerFile(string ContentFile)
         {
             ClearListToken();
@@ -109,7 +135,7 @@ namespace IDEMewtow
                 var MSentence = mSent.Trim();
                 Grammar gra = new Grammar();
                 int result = gra.ValidSentence(MSentence, y);
-                if (result == 1)
+                if (result == 1 || result == 0)
                 {
                     string[] mSen = MSentence.Split(delimiterChar);
                     foreach (var mtok in mSen)
@@ -141,8 +167,6 @@ namespace IDEMewtow
                 }
 
                 x = 0;
-
-                
             }
 
             int resultbracket = Mbracketopen - Mbracketclose;
@@ -156,6 +180,11 @@ namespace IDEMewtow
             return true;
         }
 
+        /// <summary>
+        /// metodo encargado de dividir el contenido del archivo en lineas de sentencias.
+        /// </summary>
+        /// <param name="Content">todo el contenido del archivo  a compilar</param>
+        /// <returns>lineas de sentencia</returns>
         public string[] CreateSentence(string Content)
         {
             char[] delimiterChars = { '\n' };
@@ -164,21 +193,34 @@ namespace IDEMewtow
             return mysentence;
         }
 
+        /// <summary>
+        /// metodo encargado de enviar el listado de los tokens
+        /// </summary>
+        /// <returns>listado de tokens</returns>
         public List<TokenMewtow> GetTokens()
         {
             return ListToken;
         }
 
+        /// <summary>
+        /// metodo encargado de limpiar la lista de tokens procesesados.
+        /// </summary>
         public void ClearListToken()
         {
             ListToken.Clear();
         }
-
+        /// <summary>
+        /// metodo encargado de limpiear la lista de setencias de tokens
+        /// </summary>
         public void ClearListSentence()
         {
             ListSentence.Clear();
         }
 
+        /// <summary>
+        /// metodo encargado de agregar a la lista los tokens procesados....
+        /// </summary>
+        /// <param name="vgramar"> resultado el token procesado</param>
         public static void AddListSentence(string vgramar)
         {
             char[] delim = { ';' };
@@ -186,21 +228,19 @@ namespace IDEMewtow
             ListSentence.Add(sentencetoken);
         }
 
-
+        /// <summary>
+        /// metodo encargado de crear un arbol de los resultados de la fase sintactica.
+        /// </summary>
+        /// <returns> un nodo con sus subnodos creados.</returns>
         public static TreeNode GenerateTreeSyntactic()
         {
             TreeNode Nod = new TreeNode("Lenguaje Mewtow");
-            
-
-           
             foreach (var Wn in ListSentence)
             {
-                
                 TreeNode Nnond = new TreeNode(Wn[0] + "-" + Wn[1]);
                 TreeNode Nond = new TreeNode(Wn[2]);
                 Nnond.Nodes.Add(Nond);
-                Nod.Nodes.Add(Nnond);
-                
+                Nod.Nodes.Add(Nnond);   
             }
 
             return Nod;

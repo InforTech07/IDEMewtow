@@ -17,6 +17,7 @@ namespace IDEMewtow
         private string Mtype;
         private string MwordCs;
         public static List<KeyWord> KeyWordList = new List<KeyWord>();
+        public static List<string> ListVariable = new List<string>();
 
         public KeyWord()
         {
@@ -60,9 +61,6 @@ namespace IDEMewtow
             foreach (var w in ArrayKeywords)
             {
                 string[] kw = w.Split(delimiterWord);
-                Console.WriteLine(kw[0]);
-                Console.WriteLine(kw[1]);
-                Console.WriteLine(kw[2]);
                 RequestDB.NewKeyWord(kw[0], kw[1], kw[2]);
            }
 
@@ -82,19 +80,11 @@ namespace IDEMewtow
                                 Mtype = dataRow.Field<string>("tipo_palabra"),
                                 MwordCs = dataRow.Field<string>("palabracs"),
                             }).ToList();
-
-              foreach (KeyWord d in KeyWordList)
-              {
-                Console.WriteLine(d.Mkeyword);
-                Console.WriteLine(d.Mtype);
-                Console.WriteLine(d.MwordCs);
-              }
         }
       
         public string IsValidToken(string word)
         {
             Console.WriteLine("ejecutantdo.. Is Valid");
-
             var typeword =string.Empty;
             string keywordexpresion = string.Empty;
             foreach(KeyWord t in KeyWordList)
@@ -129,12 +119,16 @@ namespace IDEMewtow
                             break;
                       case var v when rgexVariable.IsMatch(word.Trim()):
                           typeword = "variable";
+                            ListVariable.Add(word.Trim());
                           break;
                         case var v when rgexAsignment.IsMatch(word.Trim()):
                             typeword = "asignacion";
                             break;
                         case var v when rgexSpace.IsMatch(word.Trim()):
                             typeword = "espacio";
+                            break;
+                        default:
+                            typeword = "nodefindo";
                             break;
                     }
                 }
