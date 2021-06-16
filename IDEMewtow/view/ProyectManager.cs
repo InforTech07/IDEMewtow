@@ -22,11 +22,11 @@ namespace IDEMewtow
         private bool StatusGramatica;
         public ProyectManager()
         {
-          //  Thread splash = new Thread(new ThreadStart(SplashScreenShow));
-          //  splash.Start();
-          //  Thread.Sleep(8000);
+            //Thread splash = new Thread(new ThreadStart(SplashScreenShow));
+            //splash.Start();
+            //Thread.Sleep(8000);
             InitializeComponent();
-          //  splash.Abort();
+            //splash.Abort();
 
         }
 

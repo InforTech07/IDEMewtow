@@ -1,0 +1,30 @@
+//    Lenguaje  mewtow +bienvenido+.
+mnamespace CalculadoraMewtow
+{
+//   Nombre de nuestra clase.
+    mclass Calculadora 
+    {
+       mstatic mvoid mmain
+        {
+// declaracion de variable
+           mint pnum
+// impresion de texto
+           mconsole ('------------Calculadora-----------')
+// asignacion de a variables
+           pnum = mint(mreadline)
+// declaracion de mswitch
+          mswitch(opcion)
+          {
+// declaracion de mcase                  
+	mcase 1:
+                              result = pnum + snum
+                              mconsole ('la suma es:', result)
+                              mbreak
+                  mdefault:
+                              mconsole ('opcion no valido')
+                              mbreak 
+          }
+           mreadline            
+        }
+    }
+}

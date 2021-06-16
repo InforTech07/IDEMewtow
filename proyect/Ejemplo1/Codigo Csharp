@@ -1,0 +1,48 @@
+// Programa Escrito En Mewtow: Traducido a Csharp
+// Lenguaje  mewtow +bienvenido+.
+// Lenguaje  mewtow +bienvenido+.
+namespace CalculadoraMewtow
+{
+// Nombre de nuestra clase.
+class Calculadora
+{
+static void Main()
+{
+int pnum;
+int snum;
+int opcion;
+int result;
+Console.WriteLine("------------Calculadora-----------");
+Console.WriteLine("intruduzca el primer numero");
+pnum = Console.ReadLine();
+Console.WriteLine("intruduzca el segundo numero");
+snum = Console.ReadLine();
+Console.WriteLine("Elija una opcion");
+Console.WriteLine(" 1 -sumar  2-restar 3-producto  4-dividir");
+opcion = Console.ReadLine();
+switch (opcion)
+{
+case 1:
+result = pnum + snum;
+Console.WriteLine("la suma es:", result);
+break;
+case 2:
+result = pnum - snum;
+Console.WriteLine("la resta es: ", result);
+break;
+case 3:
+result = pnum * snum;
+Console.WriteLine("el producto es:", result);
+break;
+case 4:
+result = pnum / snum;
+Console.WriteLine("la divicion es:", result);
+break;
+default:
+Console.WriteLine("opcion no valido");
+break;
+}
+Console.ReadLine();
+}
+}
+}

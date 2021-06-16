@@ -35,6 +35,7 @@ namespace IDEMewtow
             tb.ScrollBars = ScrollBars.Vertical;
             tb.AcceptsTab = true;
             tb.WordWrap = true;
+            tb.Font = new Font("Arial", 12, FontStyle.Regular);
             return tb;
         }
 
@@ -42,6 +43,7 @@ namespace IDEMewtow
         {
             DataGridView dgv = new DataGridView();
             dgv.Dock = DockStyle.Fill;
+            dgv.Font = new Font("Arial", 12, FontStyle.Regular);
             return dgv;
         }
 

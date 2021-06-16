@@ -1,7 +1,7 @@
 //    Lenguaje  mewtow +bienvenido+.
-mnamespace CalculadoraMewtow
+ mnamespace CalculadoraMewtow
 {
-//   Nombre de nuestra clase.
+//  Nombre de nuestra clase.
     mclass Calculadora 
     {
        mstatic mvoid mmain
@@ -10,38 +10,38 @@ mnamespace CalculadoraMewtow
            mint snum
            mint opcion
            mint result
-          mstring saludo
-           mconsole ('------------Calculadora-----------')
-           mconsole ('intruduzca el primer numero')
+           mstring saludo
+           ver ('------calculaddora------')
+           ver ('intruduzca el primer numero')
            pnum = mint(mreadline)
-           mconsole ('intruduzca el segundo numero')
+           ver ('intruduzca el segundo numero')
            snum = mint(mreadline)
-           mconsole ('Elija una opcion')
-           mconsole (' 1 -sumar  2-restar 3-producto  4-dividir')
+           ver ('Elija una opcion')
+           ver (' 1 -sumar  2-restar 3-producto  4-dividir')
           opcion = mint(mreadline)
           mswitch(opcion)
           {
                   mcase 1:
                               result = pnum + snum
-                              mconsole ('la suma es:', result)
+                              ver ('la suma es:', result)
                               mbreak
                   mcase 2:
                               result = pnum - snum
-                              mconsole ('la resta es: ', result)
+                              ver ('la resta es: ', result)
                               mbreak
                   mcase 3:
                               result = pnum * snum
-                              mconsole ('el producto es:', result)
+                              ver ('el producto es:', result)
                               mbreak
                   mcase 4:
                               result = pnum / snum
-                              mconsole ('la divicion es:', result)
+                              ver ('la divicion es:', result)
                               mbreak
                   mdefault:
-                              mconsole ('opcion no valido')
+                              ver ('opcion no valido')
                               mbreak 
           }
            mreadline            
-        }
-    }
+	}
+      }
 }

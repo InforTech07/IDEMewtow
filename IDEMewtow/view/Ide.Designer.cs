@@ -38,7 +38,7 @@ namespace IDEMewtow
             this.BtnBack = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.Ltitleproyect = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnCodeCs = new System.Windows.Forms.Button();
             this.btnopen = new System.Windows.Forms.Button();
             this.BtnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -88,7 +88,7 @@ namespace IDEMewtow
             this.panel1.Controls.Add(this.BtnBack);
             this.panel1.Controls.Add(this.BtnSave);
             this.panel1.Controls.Add(this.Ltitleproyect);
-            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.btnCodeCs);
             this.panel1.Controls.Add(this.btnopen);
             this.panel1.Controls.Add(this.BtnExit);
             this.panel1.Controls.Add(this.label1);
@@ -174,20 +174,21 @@ namespace IDEMewtow
             this.Ltitleproyect.TabIndex = 7;
             this.Ltitleproyect.Text = "Proyecto";
             // 
-            // button5
+            // btnCodeCs
             // 
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Calibri Light", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button5.Location = new System.Drawing.Point(1019, 8);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 25);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Codigo";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnCodeCs.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(38)))));
+            this.btnCodeCs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
+            this.btnCodeCs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(60)))), ((int)(((byte)(76)))));
+            this.btnCodeCs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCodeCs.Font = new System.Drawing.Font("Calibri Light", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCodeCs.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCodeCs.Location = new System.Drawing.Point(1019, 8);
+            this.btnCodeCs.Name = "btnCodeCs";
+            this.btnCodeCs.Size = new System.Drawing.Size(80, 25);
+            this.btnCodeCs.TabIndex = 6;
+            this.btnCodeCs.Text = "Codigo";
+            this.btnCodeCs.UseVisualStyleBackColor = true;
+            this.btnCodeCs.Click += new System.EventHandler(this.btnCodeCs_Click);
             // 
             // btnopen
             // 
@@ -586,7 +587,7 @@ namespace IDEMewtow
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Ltitleproyect;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnCodeCs;
         private System.Windows.Forms.Button btnopen;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;

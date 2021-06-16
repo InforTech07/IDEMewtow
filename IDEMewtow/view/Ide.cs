@@ -15,6 +15,8 @@ namespace IDEMewtow
 {
     public partial class Ide : Form
     {
+
+        public static string Gnameproyect;
         public Ide(int id)
         {
             InitializeComponent();
@@ -33,6 +35,7 @@ namespace IDEMewtow
             var data = RequestDB.GetProyectId(idpro);
             var name = Convert.ToString(data.Tables[0].Rows[0][0]);
             Ltitleproyect.Text = name;
+            Gnameproyect = name;
 
             string path = Environment.rootDir + name;
             treeView1.Nodes.Add(Helpers.GenerateTreeView(path));
@@ -268,7 +271,21 @@ namespace IDEMewtow
 
         private void BtnSemantics_Click(object sender, EventArgs e)
         {
-           
+            Components NewCompps = new Components();
+            var NTabPagees = NewCompps.CreateTab("Semantica");
+            TreeView treesemantic = new TreeView();
+
+            treesemantic.Nodes.Add(Grammar.GenerateTreeVar());
+            treesemantic.Nodes.Add(Grammar.GenerateTreeMethod());
+            treesemantic.Nodes.Add(Grammar.GenerateTreeClass());
+            treesemantic.Dock = DockStyle.Fill;
+            treesemantic.BackColor = Color.FromArgb(28, 30, 38);
+            treesemantic.ForeColor = Color.White;
+
+            NTabPagees.Controls.Add(treesemantic);
+            tabprimary.Controls.Add(NTabPagees);
+            tabprimary.SelectedTab = NTabPagees;
+            PrintLogProcess("-> Ejecutantdo Fase semantico");
         }
 
         private void ClearDataGrid()
@@ -319,6 +336,27 @@ namespace IDEMewtow
             {
                 this.WindowState = FormWindowState.Normal;
             }
+        }
+
+        private void btnCodeCs_Click(object sender, EventArgs e)
+        {
+            PrintLogProcess("-> Inciando Traduccion a csharp");
+            Components NewCompp = new Components();
+            var NTabPagee = NewCompp.CreateTab("Codigo Csharp");
+            var NTextBox = NewCompp.CreateTextBox();
+            Grammar.clearCodeSharp();
+            NTextBox.Text = "// Programa Escrito En Mewtow: Traducido a Csharp" + "\r\n";
+            var MewtowSentence = TokenMewtow.GetListSentence();
+            foreach (var Msent in MewtowSentence)
+            {
+                NTextBox.Text += Grammar.TranslatorToCsharp(Msent[2]) + "\r\n";
+            }
+
+            NTabPagee.Controls.Add(NTextBox);
+            tabprimary.Controls.Add(NTabPagee);
+            tabprimary.SelectedTab = NTabPagee;
+            PrintLogProcess("-> Codigo Csharp Generado");
+
         }
     }
 

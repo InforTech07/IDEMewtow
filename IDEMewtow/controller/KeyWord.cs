@@ -99,7 +99,8 @@ namespace IDEMewtow
                 Regex rgexSpace = new Regex(@"\s");
                 Regex rgexString = new Regex(@"[""][\w\s]*[""]");
                 Regex rgexOperator = new Regex(@"([+]|[-]|[\/]|[*])");
-                Regex rgexAsignment = new Regex(@":=");
+                Regex rgexComparative = new Regex(@"(==|!=|>|<|<=|=>)");
+                Regex rgexAsignment = new Regex(@"=");
                 //  Regex rgexAssignament = new Regex(@":=");
 
                 if (rgexKeyWord.IsMatch(word.Trim()))
@@ -115,17 +116,19 @@ namespace IDEMewtow
                             typeword = "numero";                            
                             break;
                         case var v when rgexOperator.IsMatch(word.Trim()):
-                            typeword = "operador";
+                            typeword = "operador matematico";
                             break;
                       case var v when rgexVariable.IsMatch(word.Trim()):
-                          typeword = "variable";
-                            ListVariable.Add(word.Trim());
+                          typeword = "Identificador";
                           break;
                         case var v when rgexAsignment.IsMatch(word.Trim()):
-                            typeword = "asignacion";
+                            typeword = "asignador";
                             break;
                         case var v when rgexSpace.IsMatch(word.Trim()):
-                            typeword = "espacio";
+                            typeword = "Espacio blanco";
+                            break;
+                        case var v when rgexComparative.IsMatch(word.Trim()):
+                            typeword = "comparador";
                             break;
                         default:
                             typeword = "nodefindo";

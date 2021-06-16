@@ -120,6 +120,7 @@ namespace IDEMewtow
         {
             ClearListToken();
             ClearListSentence();
+            Grammar.clearListsemantic();
             Mbracketclose = 0;
             Mbracketopen = 0;
             int x = 0;
@@ -155,13 +156,13 @@ namespace IDEMewtow
 
                 }else if (result == 3)
                 {
-                    TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "abre-llave", true, false, false);
+                    TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "Delimitador", true, false, false);
                     ListToken.Add(TokenComment);
                     Mbracketopen += 1;
                 }
                 else if (result == 4)
                 {
-                    TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "llave-cierra", true, false, false);
+                    TokenMewtow TokenComment = new TokenMewtow(mSent, x, y, "Delimitador", true, false, false);
                     ListToken.Add(TokenComment);
                     Mbracketclose += 1;
                 }
@@ -172,11 +173,13 @@ namespace IDEMewtow
             int resultbracket = Mbracketopen - Mbracketclose;
             if (resultbracket > 0)
             {
-                ErrorLog.AddError("-> Tienes (" + resultbracket +") llaves sin cerrar");
+                ErrorLog.AddError("-> Tienes (" + resultbracket +") Delimitador abierto");
             }else if(resultbracket < 0)
             {
-                ErrorLog.AddError("-> Tienes (" + resultbracket * -1 + ") llaves sin abrir");
+                ErrorLog.AddError("-> Tienes (" + resultbracket * -1 + ") Delimitador cerrando");
             }
+
+            Grammar.Semantic();
             return true;
         }
 
@@ -215,6 +218,11 @@ namespace IDEMewtow
         public void ClearListSentence()
         {
             ListSentence.Clear();
+        }
+
+        public static List<string[]> GetListSentence()
+        {
+            return ListSentence;
         }
 
         /// <summary>
